@@ -1,0 +1,322 @@
+.about-page {
+  background: #fffaf5;
+  color: #3b2118;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.about-hero {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  background:
+    linear-gradient(
+      rgba(59, 33, 24, 0.58),
+      rgba(59, 33, 24, 0.58)
+    ),
+    url("/images/about-hero.jpg") center / cover no-repeat;
+}
+
+.about-hero-content {
+  max-width: 850px;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: #a33b20;
+}
+
+.about-hero .eyebrow {
+  color: #f2c078;
+}
+
+.about-hero h1 {
+  margin: 0;
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.05;
+  font-weight: 700;
+  color: #fffaf5;
+}
+
+.about-hero h1 span {
+  display: block;
+  color: #f2c078;
+}
+
+.about-hero p {
+  max-width: 650px;
+  margin: 25px auto 0;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #f8eee5;
+}
+
+/* =========================
+   STORY
+========================= */
+
+.about-story {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.about-story-image {
+  height: 520px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.about-story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-story-content h2 {
+  margin: 0 0 22px;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.15;
+}
+
+.about-story-content h2 span {
+  color: #a33b20;
+}
+
+.about-story-content p {
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #6d554b;
+}
+
+.about-shop-btn,
+.about-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  padding: 14px 25px;
+  background: #a33b20;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.about-shop-btn:hover,
+.about-cta-btn:hover {
+  background: #3b2118;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   PROCESS
+========================= */
+
+.about-process {
+  padding: 100px 24px;
+  background: #f4ebe3;
+}
+
+.about-section-heading {
+  max-width: 760px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.about-section-heading h2 {
+  margin: 0 0 18px;
+  font-size: clamp(34px, 4vw, 50px);
+  line-height: 1.15;
+}
+
+.about-section-heading h2 span {
+  color: #a33b20;
+}
+
+.about-section-heading p {
+  margin: 0;
+  color: #6d554b;
+  line-height: 1.8;
+}
+
+.about-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.about-card {
+  padding: 38px 32px;
+  background: #fffaf5;
+  border: 1px solid rgba(59, 33, 24, 0.08);
+  transition: 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(59, 33, 24, 0.08);
+}
+
+.about-number {
+  display: block;
+  margin-bottom: 25px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #a33b20;
+}
+
+.about-card h3 {
+  margin: 0 0 14px;
+  font-size: 23px;
+}
+
+.about-card p {
+  margin: 0;
+  color: #6d554b;
+  line-height: 1.75;
+}
+
+/* =========================
+   MISSION
+========================= */
+
+.mission-section {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 110px 24px;
+  text-align: center;
+}
+
+.mission-section h2 {
+  margin: 0 auto 22px;
+  font-size: clamp(35px, 5vw, 58px);
+  line-height: 1.15;
+}
+
+.mission-section h2 span {
+  color: #a33b20;
+}
+
+.mission-section p {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #6d554b;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.about-cta {
+  min-height: 420px;
+  padding: 80px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    linear-gradient(
+      rgba(59, 33, 24, 0.72),
+      rgba(59, 33, 24, 0.72)
+    ),
+    url("/images/about-cta.jpg") center / cover no-repeat;
+}
+
+.about-cta .eyebrow {
+  color: #f2c078;
+}
+
+.about-cta h2 {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #fffaf5;
+  font-size: clamp(35px, 5vw, 58px);
+  line-height: 1.15;
+}
+
+.about-cta h2 span {
+  color: #f2c078;
+}
+
+.about-cta-btn {
+  margin-top: 30px;
+  background: #f2c078;
+  color: #3b2118;
+}
+
+.about-cta-btn:hover {
+  background: #fffaf5;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .about-story {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .about-story-image {
+    height: 420px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-hero {
+    min-height: 450px;
+    padding: 60px 20px;
+  }
+
+  .about-hero p {
+    font-size: 16px;
+  }
+
+  .about-story,
+  .about-process {
+    padding: 70px 20px;
+  }
+
+  .about-story-image {
+    height: 330px;
+  }
+
+  .about-card {
+    padding: 30px 25px;
+  }
+
+  .mission-section {
+    padding: 75px 20px;
+  }
+
+  .about-cta {
+    min-height: 380px;
+  }
+}

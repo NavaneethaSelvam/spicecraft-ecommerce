@@ -1,184 +1,452 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* =========================================
+   SPICECRAFT - APP COMMON STYLES
+========================================= */
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+/* =========================================
+   ROOT APP
+========================================= */
+
+#root {
+  min-height: 100vh;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
+.app {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+main {
+  flex: 1;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
 
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+/* =========================================
+   COMMON PAGE LAYOUT
+========================================= */
+
+.page {
+  width: 100%;
+  min-height: 70vh;
 }
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
+.page-container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+
+/* =========================================
+   PAGE HEADING
+========================================= */
+
+.page-heading {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 60px 0 40px;
+  text-align: center;
+}
+
+.page-heading h1 {
+  margin: 8px 0 12px;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.1;
+  font-weight: 700;
+  color: #24150e;
+}
+
+.page-heading p {
+  max-width: 650px;
+  margin: 0 auto;
+  color: #75675f;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   EYEBROW
+========================================= */
+
+.eyebrow {
+  display: inline-block;
+  color: #9b5b25;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+
+/* =========================================
+   SECTION
+========================================= */
+
+.section {
+  width: 100%;
+  padding: 80px 0;
+}
+
+.section-container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.section-heading {
+  margin-bottom: 45px;
+  text-align: center;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 10px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #24150e;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.section-heading p {
+  max-width: 650px;
+  margin: 14px auto 0;
+  color: #75675f;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   COMMON BUTTON
+========================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
-  margin: 32px 0 0;
 
-  .logo {
-    height: 18px;
-  }
+  padding: 13px 24px;
 
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
+  border: none;
+  border-radius: 5px;
 
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
+  font-size: 14px;
+  font-weight: 600;
 
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
+  cursor: pointer;
 
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.btn-primary {
+  background: #7b351f;
+  color: #ffffff;
 }
 
-.ticks {
-  position: relative;
+.btn-primary:hover {
+  background: #5d2516;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(123, 53, 31, 0.2);
+}
+
+
+/* =========================================
+   SECONDARY BUTTON
+========================================= */
+
+.btn-secondary {
+  background: #f3e5d2;
+  color: #5c2d1c;
+}
+
+.btn-secondary:hover {
+  background: #e7d0b2;
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   OUTLINE BUTTON
+========================================= */
+
+.btn-outline {
+  background: transparent;
+  color: #7b351f;
+  border: 1px solid #7b351f;
+}
+
+.btn-outline:hover {
+  background: #7b351f;
+  color: #ffffff;
+}
+
+
+/* =========================================
+   COMMON GRID
+========================================= */
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+/* =========================================
+   COMMON CARD
+========================================= */
+
+.card {
+  background: #ffffff;
+  border: 1px solid #eee5dc;
+  border-radius: 10px;
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(55, 32, 18, 0.1);
+}
+
+
+/* =========================================
+   COMMON FORM
+========================================= */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #352219;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
   width: 100%;
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+  padding: 12px 14px;
+
+  border: 1px solid #ddd1c5;
+  border-radius: 5px;
+
+  outline: none;
+
+  background: #ffffff;
+  color: #24150e;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #9b5b25;
+  box-shadow: 0 0 0 3px rgba(155, 91, 37, 0.08);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+
+/* =========================================
+   COMMON DIVIDER
+========================================= */
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: #eee5dc;
+}
+
+.section-divider {
+  width: 60px;
+  height: 2px;
+  margin: 16px auto;
+  background: #9b5b25;
+}
+
+
+/* =========================================
+   COMMON LINK
+========================================= */
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #7b351f;
+  font-weight: 600;
+
+  transition: gap 0.3s ease;
+}
+
+.text-link:hover {
+  gap: 10px;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-products,
+.empty-cart {
+  padding: 70px 20px;
+  text-align: center;
+  color: #75675f;
+}
+
+.empty-products h3,
+.empty-cart h3 {
+  margin-bottom: 8px;
+  color: #352219;
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loading {
+  min-height: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #75675f;
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5eee7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9b5b25;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7b351f;
+}
+
+
+/* =========================================
+   TEXT SELECTION
+========================================= */
+
+::selection {
+  background: #e8d1b3;
+  color: #24150e;
+}
+
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 992px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+  .section {
+    padding: 65px 0;
+  }
+
+  .page-heading {
+    padding: 50px 0 35px;
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+
+  .page-heading {
+    padding: 40px 0 30px;
+  }
+
+  .page-heading h1 {
+    font-size: 34px;
+  }
+
+  .section-heading {
+    margin-bottom: 30px;
+  }
+
+  .section-heading h2 {
+    font-size: 30px;
+  }
+
+  .btn {
+    padding: 12px 18px;
   }
 }

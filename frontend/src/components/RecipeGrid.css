@@ -1,0 +1,32 @@
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.recipe-empty {
+  width: 100%;
+  padding: 50px 20px;
+
+  text-align: center;
+
+  color: #766b63;
+  font-size: 15px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .recipe-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .recipe-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

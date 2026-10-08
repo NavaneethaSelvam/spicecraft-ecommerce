@@ -1,0 +1,507 @@
+/* =========================================
+   SPICECRAFT HERO CAROUSEL
+========================================= */
+
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  min-height: 650px;
+  overflow: hidden;
+  background: #2a1710;
+  color: #ffffff;
+}
+
+/* =========================================
+   BACKGROUND IMAGE
+========================================= */
+
+.hero-image-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: 650px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+
+  animation: heroZoom 8s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.06);
+  }
+}
+
+/* =========================================
+   DARK OVERLAY
+========================================= */
+
+.hero-dark-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(30, 14, 8, 0.92) 0%,
+      rgba(30, 14, 8, 0.78) 38%,
+      rgba(30, 14, 8, 0.38) 70%,
+      rgba(30, 14, 8, 0.18) 100%
+    );
+}
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1280px;
+  min-height: 650px;
+
+  margin: 0 auto;
+  padding: 80px 70px;
+
+  display: flex;
+  align-items: center;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.hero-content {
+  max-width: 650px;
+
+  animation: heroContent 0.8s ease;
+}
+
+@keyframes heroContent {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   TAG
+========================================= */
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 22px;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+
+  color: #f4c78d;
+}
+
+.hero-tag::before {
+  content: "";
+
+  width: 32px;
+  height: 1px;
+
+  background: #f4c78d;
+}
+
+/* =========================================
+   TITLE
+========================================= */
+
+.hero-content h1 {
+  margin: 0 0 24px;
+
+  font-size: clamp(48px, 6vw, 78px);
+  line-height: 1.03;
+
+  font-weight: 700;
+  letter-spacing: -2px;
+
+  color: #ffffff;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.hero-content p {
+  max-width: 570px;
+
+  margin: 0 0 35px;
+
+  font-size: 17px;
+  line-height: 1.8;
+
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hero-primary-btn,
+.hero-secondary-btn {
+  min-height: 52px;
+
+  padding: 0 25px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Primary */
+
+.hero-primary-btn {
+  background: #a33b20;
+  color: #ffffff;
+
+  border: 1px solid #a33b20;
+}
+
+.hero-primary-btn:hover {
+  background: #c14b29;
+  transform: translateY(-3px);
+}
+
+.hero-primary-btn span {
+  font-size: 20px;
+}
+
+/* Secondary */
+
+.hero-secondary-btn {
+  color: #ffffff;
+
+  border: 1px solid rgba(255, 255, 255, 0.55);
+
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.hero-secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+
+  border-color: #ffffff;
+
+  transform: translateY(-3px);
+}
+
+/* =========================================
+   NAVIGATION ARROWS
+========================================= */
+
+.hero-navigation {
+  position: absolute;
+  z-index: 4;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 52px;
+  height: 52px;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(8px);
+
+  color: #ffffff;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  font-size: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.hero-navigation:hover {
+  background: #a33b20;
+  border-color: #a33b20;
+}
+
+.hero-prev {
+  left: 28px;
+}
+
+.hero-next {
+  right: 28px;
+}
+
+.hero-prev:hover {
+  transform: translateY(-50%) translateX(-3px);
+}
+
+.hero-next:hover {
+  transform: translateY(-50%) translateX(3px);
+}
+
+/* =========================================
+   DOTS
+========================================= */
+
+.hero-dots {
+  position: absolute;
+
+  z-index: 5;
+
+  bottom: 32px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+.hero-dot {
+  width: 8px;
+  height: 8px;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.45);
+
+  cursor: pointer;
+
+  transition:
+    width 0.3s ease,
+    background 0.3s ease;
+}
+
+.hero-dot.active {
+  width: 30px;
+
+  border-radius: 10px;
+
+  background: #f4c78d;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .hero-carousel {
+    min-height: 600px;
+  }
+
+  .hero-image {
+    min-height: 600px;
+  }
+
+  .hero-container {
+    min-height: 600px;
+
+    padding: 70px 55px;
+  }
+
+  .hero-content {
+    max-width: 580px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(42px, 7vw, 64px);
+  }
+
+  .hero-navigation {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hero-prev {
+    left: 18px;
+  }
+
+  .hero-next {
+    right: 18px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .hero-carousel {
+    min-height: 620px;
+  }
+
+  .hero-image {
+    min-height: 620px;
+
+    object-position: center;
+  }
+
+  .hero-dark-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(30, 14, 8, 0.35) 0%,
+        rgba(30, 14, 8, 0.82) 50%,
+        rgba(30, 14, 8, 0.96) 100%
+      );
+  }
+
+  .hero-container {
+    min-height: 620px;
+
+    padding: 55px 24px 100px;
+
+    align-items: flex-end;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-tag {
+    margin-bottom: 16px;
+
+    font-size: 10px;
+
+    letter-spacing: 1.7px;
+  }
+
+  .hero-tag::before {
+    width: 22px;
+  }
+
+  .hero-content h1 {
+    margin-bottom: 18px;
+
+    font-size: 43px;
+
+    line-height: 1.05;
+
+    letter-spacing: -1px;
+  }
+
+  .hero-content p {
+    margin-bottom: 25px;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 10px;
+  }
+
+  .hero-primary-btn,
+  .hero-secondary-btn {
+    width: 100%;
+  }
+
+  .hero-navigation {
+    top: 35%;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 18px;
+  }
+
+  .hero-prev {
+    left: 12px;
+  }
+
+  .hero-next {
+    right: 12px;
+  }
+
+  .hero-dots {
+    bottom: 22px;
+  }
+
+  .hero-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .hero-dot.active {
+    width: 22px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+  .hero-content h1 {
+    font-size: 37px;
+  }
+
+  .hero-content p {
+    font-size: 13px;
+  }
+
+  .hero-navigation {
+    top: 32%;
+  }
+}

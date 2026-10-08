@@ -1,0 +1,287 @@
+.export-page {
+  background: #fffaf5;
+  color: #3b2118;
+}
+
+/* HERO */
+
+.export-hero {
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+
+  background:
+    linear-gradient(
+      rgba(59, 33, 24, 0.68),
+      rgba(59, 33, 24, 0.68)
+    ),
+    url("/images/export-hero.jpg") center / cover no-repeat;
+}
+
+.export-hero-content {
+  max-width: 820px;
+}
+
+.export-hero .eyebrow {
+  color: #f2c078;
+}
+
+.export-hero h1 {
+  margin: 0;
+  color: #fffaf5;
+  font-size: clamp(43px, 6vw, 72px);
+  line-height: 1.05;
+}
+
+.export-hero h1 span {
+  display: block;
+  color: #f2c078;
+}
+
+.export-hero p {
+  max-width: 650px;
+  margin: 25px auto 0;
+  color: #f8eee5;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* INTRO */
+
+.export-intro {
+  padding: 100px 24px;
+}
+
+.export-intro-content {
+  max-width: 1150px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: start;
+}
+
+.export-intro-text h2,
+.export-form-heading h2,
+.export-bottom h2 {
+  margin: 0 0 20px;
+  font-size: clamp(35px, 5vw, 55px);
+  line-height: 1.15;
+}
+
+.export-intro-text h2 span,
+.export-form-heading h2 span,
+.export-bottom h2 span {
+  color: #a33b20;
+}
+
+.export-intro-text p {
+  margin-bottom: 18px;
+  color: #6d554b;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* HIGHLIGHTS */
+
+.export-highlights {
+  display: grid;
+  gap: 18px;
+}
+
+.export-highlight {
+  padding: 28px;
+  background: #f4ebe3;
+  border-left: 4px solid #a33b20;
+}
+
+.export-highlight strong {
+  color: #a33b20;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.export-highlight h3 {
+  margin: 12px 0 8px;
+  font-size: 21px;
+}
+
+.export-highlight p {
+  margin: 0;
+  color: #6d554b;
+  line-height: 1.7;
+}
+
+/* FORM */
+
+.export-form-section {
+  padding: 100px 24px;
+  background: #f4ebe3;
+}
+
+.export-form-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.export-form-heading {
+  margin-bottom: 45px;
+}
+
+.export-form-heading p {
+  max-width: 650px;
+  color: #6d554b;
+  line-height: 1.8;
+}
+
+.export-form {
+  padding: 45px;
+  background: #fffaf5;
+  border: 1px solid rgba(59, 33, 24, 0.08);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 14px 15px;
+
+  border: 1px solid #d8c8bd;
+  background: #fff;
+
+  color: #3b2118;
+  font-family: inherit;
+  font-size: 15px;
+
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #a33b20;
+}
+
+.export-submit-btn {
+  width: 100%;
+  padding: 16px 25px;
+
+  border: none;
+
+  background: #a33b20;
+  color: #fff;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.export-submit-btn:hover {
+  background: #3b2118;
+}
+
+/* SUCCESS */
+
+.export-success {
+  margin-bottom: 25px;
+  padding: 16px 18px;
+
+  background: #e8f4e8;
+  border-left: 4px solid #4d8b4d;
+
+  color: #315d31;
+  line-height: 1.6;
+}
+
+/* BOTTOM */
+
+.export-bottom {
+  padding: 100px 24px;
+  text-align: center;
+}
+
+.export-bottom p {
+  max-width: 620px;
+  margin: 0 auto;
+
+  color: #6d554b;
+  line-height: 1.8;
+}
+
+.export-bulk-btn {
+  display: inline-flex;
+  margin-top: 25px;
+
+  padding: 14px 25px;
+
+  background: #3b2118;
+  color: #fff;
+
+  text-decoration: none;
+  font-weight: 600;
+
+  transition: 0.3s ease;
+}
+
+.export-bulk-btn:hover {
+  background: #a33b20;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+  .export-intro-content {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .export-form {
+    padding: 30px 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .export-hero {
+    min-height: 420px;
+  }
+
+  .export-intro,
+  .export-form-section,
+  .export-bottom {
+    padding: 70px 20px;
+  }
+}

@@ -1,54 +1,101 @@
-import { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
+import "./OrderTracking.css";
 
-const steps = [
-  "Placed",
-  "Under Review",
-  "Confirmed",
-  "Shipped",
-  "Delivered",
-];
-
-export default function OrderTracking() {
-  const [tracking, setTracking] = useState(false);
-
+const OrderTracking = () => {
   return (
-    <main className="page tracking-page">
-      <div className="page-heading">
-        <span className="eyebrow">SPICECRAFT DELIVERY</span>
-        <h1>Track Your Order</h1>
-        <p>Enter your order details to check the latest status.</p>
+    <main className="tracking-page">
+
+      <div className="tracking-header">
+        <span className="tracking-eyebrow">SPICECRAFT ORDERS</span>
+        <h1>Order Tracking</h1>
+        <p>Track your spice order from packing to delivery.</p>
       </div>
 
-      <div className="tracking-box">
-        <input placeholder="Order ID" />
-        <input placeholder="Phone Number" />
+      <section className="tracking-card">
 
-        <button
-          className="btn btn-primary"
-          onClick={() => setTracking(true)}
-        >
-          Track Order
-        </button>
-      </div>
+        <div className="order-info">
+          <div>
+            <span>ORDER ID</span>
+            <strong>#SC10248</strong>
+          </div>
 
-      {tracking && (
-        <div className="timeline">
-          {steps.map((step, index) => (
-            <div className="timeline-item" key={step}>
-              <div className="timeline-dot">{index + 1}</div>
+          <div>
+            <span>ORDER DATE</span>
+            <strong>08 Oct 2026</strong>
+          </div>
 
-              <div>
-                <h3>{step}</h3>
-                <p>
-                  {index === 0
-                    ? "Your order has been successfully placed."
-                    : "Waiting for the next update."}
-                </p>
-              </div>
-            </div>
-          ))}
+          <div>
+            <span>PAYMENT</span>
+            <strong>Cash on Delivery</strong>
+          </div>
         </div>
-      )}
+
+        <div className="tracking-status">
+          <span className="status-badge">ORDER CONFIRMED</span>
+          <h2>Your spices are on their way!</h2>
+          <p>
+            Your order has been confirmed and will be packed fresh before
+            dispatch.
+          </p>
+        </div>
+
+        <div className="order-timeline">
+
+          <div className="timeline-step completed">
+            <div className="timeline-dot"></div>
+            <div>
+              <h3>Order Confirmed</h3>
+              <p>Your order has been successfully placed.</p>
+            </div>
+          </div>
+
+          <div className="timeline-line"></div>
+
+          <div className="timeline-step completed">
+            <div className="timeline-dot"></div>
+            <div>
+              <h3>Being Packed</h3>
+              <p>Your spices are being freshly packed.</p>
+            </div>
+          </div>
+
+          <div className="timeline-line"></div>
+
+          <div className="timeline-step active">
+            <div className="timeline-dot"></div>
+            <div>
+              <h3>Out for Delivery</h3>
+              <p>Your order will be delivered to your address.</p>
+            </div>
+          </div>
+
+          <div className="timeline-line"></div>
+
+          <div className="timeline-step">
+            <div className="timeline-dot"></div>
+            <div>
+              <h3>Delivered</h3>
+              <p>Enjoy your authentic SpiceCraft flavours!</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div className="tracking-actions">
+          <Link to="/shop" className="tracking-btn primary">
+            Continue Shopping
+          </Link>
+
+          <Link to="/" className="tracking-btn secondary">
+            Back to Home
+          </Link>
+        </div>
+
+      </section>
+
     </main>
   );
-}
+};
+
+export default OrderTracking;

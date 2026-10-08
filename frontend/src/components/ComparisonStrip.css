@@ -1,0 +1,72 @@
+.comparison-strip {
+  width: 100%;
+  padding: 28px 0;
+  background: #fffaf2;
+  border-top: 1px solid #eee3d2;
+  border-bottom: 1px solid #eee3d2;
+}
+
+.comparison-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.comparison-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px;
+}
+
+.comparison-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff;
+  border-radius: 50%;
+  font-size: 24px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.comparison-content h3 {
+  margin: 0 0 5px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2d241f;
+}
+
+.comparison-content p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #766b63;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .comparison-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .comparison-container {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .comparison-item {
+    padding: 8px 4px;
+  }
+}

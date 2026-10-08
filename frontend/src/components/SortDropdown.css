@@ -1,0 +1,68 @@
+/* =========================================
+   SORT DROPDOWN
+========================================= */
+
+.sort-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sort-dropdown label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #765f55;
+  white-space: nowrap;
+}
+
+.sort-dropdown select {
+  min-width: 190px;
+  padding: 12px 38px 12px 14px;
+  border: 1px solid #ded1c8;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #3b2118;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.sort-dropdown select:hover {
+  border-color: #a33b20;
+}
+
+.sort-dropdown select:focus {
+  border-color: #a33b20;
+  box-shadow: 0 0 0 3px rgba(163, 59, 32, 0.08);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .sort-dropdown {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sort-dropdown select {
+    min-width: 0;
+    width: 190px;
+  }
+}
+
+@media (max-width: 400px) {
+  .sort-dropdown {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .sort-dropdown select {
+    width: 100%;
+  }
+}

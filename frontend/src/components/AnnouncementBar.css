@@ -1,0 +1,67 @@
+/* =========================================
+   ANNOUNCEMENT BAR
+========================================= */
+
+.announcement-bar {
+  width: 100%;
+
+  background: #542516;
+  color: #fff8ef;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.announcement-content {
+  width: min(1200px, 92%);
+  min-height: 36px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: 0.4px;
+}
+
+.announcement-icon {
+  font-size: 14px;
+}
+
+.announcement-dot {
+  color: #dca96d;
+  font-size: 13px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .announcement-content {
+    width: 94%;
+
+    min-height: 34px;
+
+    gap: 6px;
+
+    font-size: 10px;
+
+    text-align: center;
+  }
+
+  .announcement-icon {
+    font-size: 12px;
+  }
+
+  .announcement-dot {
+    font-size: 10px;
+  }
+}

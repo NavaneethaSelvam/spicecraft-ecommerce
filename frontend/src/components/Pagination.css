@@ -1,0 +1,139 @@
+.pagination {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  margin-top: 40px;
+  padding: 10px 0;
+}
+
+/* =========================
+   PREVIOUS / NEXT
+========================= */
+
+.pagination-btn {
+  min-width: 105px;
+
+  padding: 10px 16px;
+
+  border: 1px solid #d9c9bd;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #3b2118;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #3b2118;
+  border-color: #3b2118;
+  color: #ffffff;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* =========================
+   PAGE NUMBERS
+========================= */
+
+.pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.pagination-page {
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid #e1d5cc;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #3b2118;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.pagination-page:hover {
+  border-color: #a33b20;
+  color: #a33b20;
+  transform: translateY(-1px);
+}
+
+/* Active page */
+
+.pagination-page.active {
+  background: #a33b20;
+  border-color: #a33b20;
+  color: #ffffff;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .pagination {
+    gap: 8px;
+    margin-top: 30px;
+  }
+
+  .pagination-btn {
+    min-width: auto;
+    padding: 9px 11px;
+    font-size: 12px;
+  }
+
+  .pagination-pages {
+    gap: 4px;
+  }
+
+  .pagination-page {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+}
+
+/* Very small screens */
+
+@media (max-width: 400px) {
+  .pagination-btn {
+    font-size: 0;
+  }
+
+  .pagination-btn:first-child::before {
+    content: "←";
+    font-size: 16px;
+  }
+
+  .pagination-btn:last-child::after {
+    content: "→";
+    font-size: 16px;
+  }
+}

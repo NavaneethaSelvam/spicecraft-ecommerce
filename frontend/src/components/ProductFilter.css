@@ -1,0 +1,165 @@
+/* =========================================
+   PRODUCT FILTER
+========================================= */
+
+.product-filter {
+  width: 100%;
+  padding: 26px;
+  background: #ffffff;
+  border: 1px solid #eadfd7;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(59, 33, 24, 0.05);
+}
+
+/* =========================================
+   FILTER HEADER
+========================================= */
+
+.filter-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #eadfd7;
+}
+
+.filter-eyebrow {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #a33b20;
+}
+
+.filter-header h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #3b2118;
+}
+
+.filter-clear {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #a33b20;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.filter-clear:hover {
+  color: #7f2c18;
+}
+
+/* =========================================
+   FILTER SECTION
+========================================= */
+
+.filter-section {
+  padding: 24px 0;
+  border-bottom: 1px solid #eee4dd;
+}
+
+.filter-section:last-child {
+  padding-bottom: 4px;
+  border-bottom: none;
+}
+
+.filter-section h3 {
+  margin: 0 0 15px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #3b2118;
+}
+
+/* =========================================
+   FILTER OPTIONS
+========================================= */
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: #765f55;
+  font-size: 13px;
+  line-height: 1.4;
+  transition: color 0.25s ease;
+}
+
+.filter-option:hover {
+  color: #3b2118;
+}
+
+.filter-option input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #a33b20;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.filter-option span {
+  transition: color 0.25s ease;
+}
+
+.filter-option input:checked + span {
+  color: #3b2118;
+  font-weight: 600;
+}
+
+/* =========================================
+   RATING
+========================================= */
+
+.filter-rating {
+  gap: 7px;
+}
+
+.rating-stars {
+  color: #b4772c;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.filter-rating small {
+  color: #8b756b;
+  font-size: 11px;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+  .product-filter {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-filter {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .filter-header h2 {
+    font-size: 20px;
+  }
+
+  .filter-section {
+    padding: 20px 0;
+  }
+}

@@ -1,9 +1,10 @@
+
 import { create } from "zustand";
 
-const useCartStore = create((set) => ({
+const useCartStore = create((set, get) => ({
   cartItems: [],
 
-  addToCart: (product) =>
+  addToCart: (product) => {
     set((state) => {
       const existingItem = state.cartItems.find(
         (item) => item.id === product.id
@@ -13,10 +14,7 @@ const useCartStore = create((set) => ({
         return {
           cartItems: state.cartItems.map((item) =>
             item.id === product.id
-              ? {
-                  ...item,
-                  quantity: item.quantity + 1,
-                }
+              ? { ...item, quantity: item.quantity + 1 }
               : item
           ),
         };
@@ -25,22 +23,17 @@ const useCartStore = create((set) => ({
       return {
         cartItems: [
           ...state.cartItems,
-          {
-            ...product,
-            quantity: 1,
-          },
+          { ...product, quantity: 1 },
         ],
       };
-    }),
+    });
+  },
 
   increaseQuantity: (id) =>
     set((state) => ({
       cartItems: state.cartItems.map((item) =>
         item.id === id
-          ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
+          ? { ...item, quantity: item.quantity + 1 }
           : item
       ),
     })),
@@ -50,10 +43,7 @@ const useCartStore = create((set) => ({
       cartItems: state.cartItems
         .map((item) =>
           item.id === id
-            ? {
-                ...item,
-                quantity: item.quantity - 1,
-              }
+            ? { ...item, quantity: item.quantity - 1 }
             : item
         )
         .filter((item) => item.quantity > 0),
@@ -61,21 +51,17 @@ const useCartStore = create((set) => ({
 
   removeFromCart: (id) =>
     set((state) => ({
-      cartItems: state.cartItems.filter(
-        (item) => item.id !== id
-      ),
+      cartItems: state.cartItems.filter((item) => item.id !== id),
     })),
 
-  clearCart: () =>
-    set({
-      cartItems: [],
-    }),
+  clearCart: () => set({ cartItems: [] }),
 
-  getTotal: () => {
-    let total = 0;
-
-    return total;
-  },
+  getTotal: () =>
+    get().cartItems.reduce(
+      (total, item) =>
+        total + Number(item.price || 0) * item.quantity,
+      0
+    ),
 }));
 
 export default useCartStore;

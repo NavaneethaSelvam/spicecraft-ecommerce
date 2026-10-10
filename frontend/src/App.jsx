@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import AnnouncementBar from "./components/AnnouncementBar";
@@ -5,6 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Notification from "./components/Notification";
 
+// Store pages
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import ProductDetails from "./pages/ProductDetails";
@@ -12,16 +14,26 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderTracking from "./pages/OrderTracking";
 
+// Recipe pages
 import Recipes from "./pages/Recipes";
 import RecipeDetails from "./pages/RecipeDetails";
 
+// Blog pages
 import Blog from "./pages/Blog";
 import BlogDetails from "./pages/BlogDetails";
 
+// Other pages
 import About from "./pages/About";
 import BulkOrder from "./pages/BulkOrder";
 import ExportEnquiry from "./pages/ExportEnquiry";
 
+// Login and Admin pages
+import Login from "./pages/Login";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminProducts from "./pages/AdminProducts";
+
+// Global CSS
 import "./index.css";
 import "./App.css";
 
@@ -46,16 +58,10 @@ function App() {
         />
 
         {/* Cart */}
-        <Route
-          path="/cart"
-          element={<Cart />}
-        />
+        <Route path="/cart" element={<Cart />} />
 
         {/* Checkout */}
-        <Route
-          path="/checkout"
-          element={<Checkout />}
-        />
+        <Route path="/checkout" element={<Checkout />} />
 
         {/* Order Tracking */}
         <Route
@@ -64,10 +70,7 @@ function App() {
         />
 
         {/* Recipes */}
-        <Route
-          path="/recipes"
-          element={<Recipes />}
-        />
+        <Route path="/recipes" element={<Recipes />} />
 
         {/* Recipe Details */}
         <Route
@@ -76,10 +79,7 @@ function App() {
         />
 
         {/* Blog */}
-        <Route
-          path="/blog"
-          element={<Blog />}
-        />
+        <Route path="/blog" element={<Blog />} />
 
         {/* Blog Details */}
         <Route
@@ -88,10 +88,7 @@ function App() {
         />
 
         {/* About */}
-        <Route
-          path="/about"
-          element={<About />}
-        />
+        <Route path="/about" element={<About />} />
 
         {/* Bulk Order */}
         <Route
@@ -104,6 +101,33 @@ function App() {
           path="/export-enquiry"
           element={<ExportEnquiry />}
         />
+
+        {/* Customer Login */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Admin Login */}
+        <Route
+          path="/admin/login"
+          element={<AdminLogin />}
+        />
+
+        {/* Admin Dashboard */}
+        <Route
+          path="/admin/dashboard"
+          element={<AdminDashboard />}
+        />
+
+        {/* Admin Products */}
+        <Route
+          path="/admin/products"
+          element={<AdminProducts />}
+        />
+
+        {/* Admin URL */}
+        <Route
+          path="/admin"
+          element={<AdminDashboard />}
+        />
       </Routes>
 
       {/* Notification */}
@@ -113,10 +137,11 @@ function App() {
         isVisible={false}
       />
 
-      {/* Footer - only once */}
+      {/* Footer */}
       <Footer />
     </BrowserRouter>
   );
 }
 
 export default App;
+

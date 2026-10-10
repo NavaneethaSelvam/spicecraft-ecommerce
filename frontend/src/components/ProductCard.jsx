@@ -1,12 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
 
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import RatingStars from "./RatingStars";
 import SpiceLevel from "./SpiceLevel";
-
 import "./ProductCard.css";
 
 const ProductCard = ({ product, onAddToCart }) => {
+  const navigate = useNavigate();
+
   if (!product) return null;
 
   const {
@@ -27,17 +28,27 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   const discount =
     comparePrice && comparePrice > price
-      ? Math.round(((comparePrice - price) / comparePrice) * 100)
+      ? Math.round(
+          ((comparePrice - price) / comparePrice) * 100
+        )
       : 0;
 
   const handleAddToCart = () => {
-    onAddToCart?.(product);
+    if (typeof onAddToCart !== "function") {
+      console.error(
+        "Add to Cart error: onAddToCart function was not provided."
+      );
+      return;
+    }
+
+    onAddToCart(product);
+
+    // Navigate to Cart after adding the product
+    navigate("/cart");
   };
 
   return (
     <article className="product-card">
-
-      {/* Product Image */}
       <Link
         to={`/product/${id}`}
         className="product-card-image"
@@ -49,18 +60,18 @@ const ProductCard = ({ product, onAddToCart }) => {
         )}
 
         <img
-          src={image}
+          src={image || "/images/product-placeholder.jpg"}
           alt={name}
           loading="lazy"
-          onError={(e) => {
-            e.currentTarget.src = "/images/product-placeholder.jpg";
+          onError={(event) => {
+            event.currentTarget.onerror = null;
+            event.currentTarget.src =
+              "/images/product-placeholder.jpg";
           }}
         />
       </Link>
 
-      {/* Product Content */}
       <div className="product-card-content">
-
         {category && (
           <span className="product-category">
             {category}
@@ -74,7 +85,6 @@ const ProductCard = ({ product, onAddToCart }) => {
           {name}
         </Link>
 
-        {/* Rating */}
         <div className="product-rating">
           <RatingStars rating={rating} />
           <span>
@@ -82,23 +92,14 @@ const ProductCard = ({ product, onAddToCart }) => {
           </span>
         </div>
 
-        {/* Spice Level */}
-        {spiceLevel && (
-          <SpiceLevel level={spiceLevel} />
-        )}
+        {spiceLevel && <SpiceLevel level={spiceLevel} />}
 
-        {/* Weight */}
         {weight && (
-          <div className="product-weight">
-            {weight}
-          </div>
+          <div className="product-weight">{weight}</div>
         )}
 
-        {/* Price */}
         <div className="product-price">
-          <span className="current-price">
-            ₹{price}
-          </span>
+          <span className="current-price">₹{price}</span>
 
           {comparePrice && comparePrice > price && (
             <span className="original-price">
@@ -107,7 +108,6 @@ const ProductCard = ({ product, onAddToCart }) => {
           )}
         </div>
 
-        {/* Add To Cart */}
         <button
           type="button"
           className="add-to-cart-btn"
@@ -115,10 +115,10 @@ const ProductCard = ({ product, onAddToCart }) => {
         >
           Add to Cart
         </button>
-
       </div>
     </article>
   );
 };
 
 export default ProductCard;
+

@@ -1,60 +1,43 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import useCartStore from "../store/cartStore";
 import "./Cart.css";
 
 const Cart = () => {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      name: "Chicken Biryani Masala",
-      price: 149,
-      quantity: 1,
-      weight: "100g",
-      image: "/images/bestseller-chicken-biryani.jpg",
-    },
-    {
-      id: 2,
-      name: "Sambar Powder",
-      price: 99,
-      quantity: 2,
-      weight: "100g",
-      image: "/images/bestseller-sambar.jpg",
-    },
-  ]);
+  const items = useCartStore((state) => state.cartItems);
+  const increaseQuantity = useCartStore(
+    (state) => state.increaseQuantity
+  );
+  const decreaseQuantity = useCartStore(
+    (state) => state.decreaseQuantity
+  );
+  const removeFromCart = useCartStore(
+    (state) => state.removeFromCart
+  );
 
-  const increaseQuantity = (id) => {
-    setItems((currentItems) =>
-      currentItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    );
-  };
-
-  const decreaseQuantity = (id) => {
-    setItems((currentItems) =>
-      currentItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (id) => {
-    setItems((currentItems) =>
-      currentItems.filter((item) => item.id !== id)
-    );
-  };
+  const [couponCode, setCouponCode] = useState("");
+  const [couponMessage, setCouponMessage] = useState("");
 
   const subtotal = items.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) =>
+      total + Number(item.price || 0) * item.quantity,
     0
   );
 
-  const delivery = subtotal >= 500 ? 0 : 49;
+  const delivery = subtotal === 0 || subtotal >= 500 ? 0 : 49;
   const total = subtotal + delivery;
+
+  const handleApplyCoupon = () => {
+    if (!couponCode.trim()) {
+      setCouponMessage("Please enter a coupon code.");
+      return;
+    }
+
+    setCouponMessage(
+      "Coupon codes are not available yet."
+    );
+  };
 
   if (items.length === 0) {
     return (
@@ -65,7 +48,8 @@ const Cart = () => {
           <h1>Your Cart is Empty</h1>
 
           <p>
-            Looks like you haven't added any spices to your cart yet.
+            Looks like you haven't added any spices to your
+            cart yet.
           </p>
 
           <Link to="/shop" className="cart-shop-btn">
@@ -94,10 +78,15 @@ const Cart = () => {
             <article className="cart-item" key={item.id}>
               <div className="cart-image">
                 <img
-                  src={item.image}
+                  src={
+                    item.image ||
+                    item.image_url ||
+                    "/images/product-placeholder.jpg"
+                  }
                   alt={item.name}
-                  onError={(e) => {
-                    e.currentTarget.src =
+                  onError={(event) => {
+                    event.currentTarget.onerror = null;
+                    event.currentTarget.src =
                       "/images/product-placeholder.jpg";
                   }}
                 />
@@ -110,12 +99,19 @@ const Cart = () => {
 
                 <h3>{item.name}</h3>
 
-                <p>{item.weight}</p>
+                <p>
+                  {item.weight ||
+                    item.weight_label ||
+                    item.quantity_label ||
+                    "100g"}
+                </p>
 
                 <div className="cart-item-bottom">
                   <div className="quantity">
                     <button
                       type="button"
+                      aria-label={`Decrease ${item.name} quantity`}
+                      disabled={item.quantity <= 1}
                       onClick={() => decreaseQuantity(item.id)}
                     >
                       −
@@ -125,6 +121,7 @@ const Cart = () => {
 
                     <button
                       type="button"
+                      aria-label={`Increase ${item.name} quantity`}
                       onClick={() => increaseQuantity(item.id)}
                     >
                       +
@@ -134,7 +131,7 @@ const Cart = () => {
                   <button
                     type="button"
                     className="remove-item"
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => removeFromCart(item.id)}
                   >
                     Remove
                   </button>
@@ -142,7 +139,9 @@ const Cart = () => {
               </div>
 
               <strong className="cart-item-price">
-                ₹{item.price * item.quantity}
+                ₹{(
+                  Number(item.price || 0) * item.quantity
+                ).toFixed(2).replace(/\.00$/, "")}
               </strong>
             </article>
           ))}
@@ -170,12 +169,24 @@ const Cart = () => {
             <input
               type="text"
               placeholder="Coupon code"
+              value={couponCode}
+              onChange={(event) => {
+                setCouponCode(event.target.value);
+                setCouponMessage("");
+              }}
             />
 
-            <button type="button">
+            <button
+              type="button"
+              onClick={handleApplyCoupon}
+            >
               Apply
             </button>
           </div>
+
+          {couponMessage && (
+            <p role="status">{couponMessage}</p>
+          )}
 
           <div className="summary-row">
             <span>Subtotal</span>
@@ -190,7 +201,7 @@ const Cart = () => {
             </strong>
           </div>
 
-          <div className="summary-divider"></div>
+          <div className="summary-divider" />
 
           <div className="summary-total">
             <span>Total</span>
@@ -205,7 +216,8 @@ const Cart = () => {
           </Link>
 
           <p className="secure-checkout">
-            Secure checkout • Freshly packed • Delivered across India
+            Secure checkout • Freshly packed • Delivered
+            across India
           </p>
         </aside>
       </div>

@@ -285,3 +285,26 @@
     padding: 20px;
   }
 }
+
+
+.product-details-price {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.product-details-price del {
+  color: #888;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.product-details-discount {
+  color: #287747;
+  background: #e8f4e9;
+  padding: 5px 9px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 700;
+}

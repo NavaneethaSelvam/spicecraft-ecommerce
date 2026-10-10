@@ -1,0 +1,88 @@
+
+/* Admin Login Page */
+.admin-login-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #dfc8a9;
+  background: linear-gradient(145deg, #fffdf8, #f8efe2);
+  box-shadow: 0 18px 45px rgba(62, 35, 18, 0.13);
+}
+
+/* Top accent line */
+.admin-login-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #71351e, #c58a45, #71351e);
+}
+
+/* Admin icon */
+.admin-login-card .login-icon {
+  width: 66px;
+  height: 66px;
+  margin-top: 28px;
+  color: #fff8eb;
+  background: linear-gradient(135deg, #783b20, #a96836);
+  box-shadow: 0 7px 18px rgba(120, 59, 32, 0.2);
+}
+
+/* Heading */
+.admin-login-card h1 {
+  color: #542817;
+  font-size: 30px;
+  letter-spacing: -0.5px;
+}
+
+.admin-login-card .login-subtitle {
+  color: #806c5a;
+}
+
+/* Input focus */
+.admin-login-card input:focus {
+  outline: none;
+}
+
+.admin-login-card form > input:focus,
+.admin-login-card .login-password:focus-within {
+  border-color: #986039;
+  box-shadow: 0 0 0 3px rgba(152, 96, 57, 0.12);
+}
+
+/* Secure login button */
+.admin-login-card .login-submit {
+  background: linear-gradient(135deg, #74371f, #98582f);
+  box-shadow: 0 5px 12px rgba(116, 55, 31, 0.16);
+}
+
+.admin-login-card .login-submit:hover {
+  background: linear-gradient(135deg, #562716, #7b4325);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(116, 55, 31, 0.22);
+}
+
+.admin-login-card .login-submit:active {
+  transform: translateY(0);
+}
+
+/* Authorized access note */
+.admin-login-card .login-note {
+  padding-top: 14px;
+  border-top: 1px solid #eadcc9;
+  color: #78644f;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .admin-login-card h1 {
+    font-size: 26px;
+  }
+
+  .admin-login-card .login-icon {
+    width: 58px;
+    height: 58px;
+  }
+}
+

@@ -57,7 +57,7 @@
 }
 
 .recipes-eyebrow {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -65,14 +65,14 @@
 
 .recipes-heading h2 {
   margin: 8px 0 0;
-  color: #3b2118;
+  color: #1c1917;
   font-size: 32px;
 }
 
 .recipes-heading > p {
   max-width: 430px;
   margin: 0;
-  color: #765f55;
+  color: #44403c;
   line-height: 1.6;
 }
 
@@ -113,7 +113,7 @@
 }
 
 .recipe-category {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -123,14 +123,14 @@
 .recipe-title {
   display: block;
   margin: 8px 0;
-  color: #3b2118;
+  color: #1c1917;
   font-size: 22px;
   font-weight: 700;
   text-decoration: none;
 }
 
 .recipe-content p {
-  color: #765f55;
+  color: #44403c;
   line-height: 1.6;
   font-size: 14px;
 }
@@ -144,7 +144,7 @@
 }
 
 .recipe-link {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;

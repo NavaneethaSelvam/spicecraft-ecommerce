@@ -1,8 +1,10 @@
-import React, { useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
 
-import RatingStars from "../components/RatingStars";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Check, Minus, Plus, ShoppingBag } from "lucide-react";
+
 import WishlistButton from "../components/WishlistButton";
+import useCartStore from "../store/cartStore";
 
 import "./ProductDetails.css";
 
@@ -13,13 +15,11 @@ const products = [
     image: "/images/product-chilli-powder.jpg",
     price: 149,
     oldPrice: 179,
-    rating: 4.8,
-    reviews: 124,
     category: "Masala Powders",
     weight: "100g",
     description:
       "Premium red chilli powder crafted from carefully selected chillies for vibrant colour, rich aroma and authentic Indian flavour.",
-    stock: true,
+    stock: 20,
   },
   {
     id: 2,
@@ -27,13 +27,11 @@ const products = [
     image: "/images/product-turmeric.jpg",
     price: 99,
     oldPrice: 119,
-    rating: 4.7,
-    reviews: 98,
     category: "Masala Powders",
     weight: "100g",
     description:
       "Pure turmeric powder with natural colour and earthy aroma, perfect for everyday Indian cooking.",
-    stock: true,
+    stock: 25,
   },
   {
     id: 3,
@@ -41,26 +39,22 @@ const products = [
     image: "/images/product-garam-masala.jpg",
     price: 179,
     oldPrice: 219,
-    rating: 4.9,
-    reviews: 156,
     category: "Masala Powders",
     weight: "100g",
     description:
       "Aromatic Indian garam masala blended with carefully selected spices for rich depth and warmth.",
-    stock: true,
+    stock: 15,
   },
   {
     id: 4,
     name: "Cumin Seeds",
     image: "/images/product-cumin.jpg",
     price: 129,
-    rating: 4.6,
-    reviews: 76,
     category: "Whole Spices",
     weight: "100g",
     description:
       "Fresh and aromatic cumin seeds selected to add a warm, earthy flavour to your favourite dishes.",
-    stock: true,
+    stock: 18,
   },
   {
     id: 5,
@@ -68,13 +62,11 @@ const products = [
     image: "/images/product-coriander.jpg",
     price: 109,
     oldPrice: 129,
-    rating: 4.7,
-    reviews: 87,
     category: "Masala Powders",
     weight: "100g",
     description:
       "Finely ground coriander powder with a fresh aroma and balanced flavour for everyday cooking.",
-    stock: true,
+    stock: 20,
   },
   {
     id: 6,
@@ -82,26 +74,22 @@ const products = [
     image: "/images/product-chicken-masala.jpg",
     price: 159,
     oldPrice: 189,
-    rating: 4.8,
-    reviews: 112,
-    category: "Masala Powders",
+    category: "Spice Blends",
     weight: "100g",
     description:
       "A flavourful blend created to bring authentic colour, aroma and spice to chicken dishes.",
-    stock: true,
+    stock: 12,
   },
   {
     id: 7,
     name: "Black Pepper",
     image: "/images/product-black-pepper.jpg",
     price: 199,
-    rating: 4.9,
-    reviews: 143,
     category: "Whole Spices",
     weight: "100g",
     description:
       "Bold black pepper with a strong aroma and naturally warm flavour for everyday cooking.",
-    stock: true,
+    stock: 10,
   },
   {
     id: 8,
@@ -109,41 +97,38 @@ const products = [
     image: "/images/product-biryani-masala.jpg",
     price: 189,
     oldPrice: 229,
-    rating: 4.9,
-    reviews: 168,
-    category: "Masala Powders",
+    category: "Spice Blends",
     weight: "100g",
     description:
       "Aromatic biryani masala blended to create rich flavour and authentic Indian-style biryani.",
-    stock: true,
+    stock: 14,
   },
 ];
 
-const ProductDetails = () => {
+function ProductDetails() {
   const { id } = useParams();
-
   const [quantity, setQuantity] = useState(1);
+  const [added, setAdded] = useState(false);
 
-  const product = useMemo(() => {
-    return products.find(
-      (item) => item.id === Number(id)
-    );
+  const addToCart = useCartStore((state) => state.addToCart);
+
+  const product = useMemo(
+    () => products.find((item) => String(item.id) === String(id)),
+    [id]
+  );
+
+  useEffect(() => {
+    setQuantity(1);
+    setAdded(false);
   }, [id]);
 
   if (!product) {
     return (
       <main className="product-not-found">
         <span>SPICECRAFT</span>
-
         <h1>Product Not Found</h1>
-
-        <p>
-          We couldn't find the product you're looking for.
-        </p>
-
-        <Link to="/shop">
-          Back to Shop
-        </Link>
+        <p>We couldn't find the product you're looking for.</p>
+        <Link to="/shop">Back to Shop</Link>
       </main>
     );
   }
@@ -153,63 +138,55 @@ const ProductDetails = () => {
     image,
     price,
     oldPrice,
-    rating,
-    reviews,
     category,
     weight,
     description,
     stock,
   } = product;
 
+  const stockValue = Number(stock ?? 0);
+  const inStock = stockValue > 0;
+
   const discount =
     oldPrice && oldPrice > price
-      ? Math.round(
-          ((oldPrice - price) / oldPrice) * 100
-        )
+      ? Math.round(((oldPrice - price) / oldPrice) * 100)
       : 0;
 
   const increaseQuantity = () => {
-    setQuantity((value) => value + 1);
+    if (quantity < stockValue) {
+      setQuantity((current) => current + 1);
+    }
   };
 
   const decreaseQuantity = () => {
-    setQuantity((value) =>
-      value > 1 ? value - 1 : 1
-    );
+    setQuantity((current) => Math.max(1, current - 1));
   };
 
   const handleAddToCart = () => {
-    console.log("Add to cart:", {
-      ...product,
-      quantity,
-    });
+    if (!inStock || quantity > stockValue) return;
+
+    for (let index = 0; index < quantity; index += 1) {
+      addToCart(product);
+    }
+
+    setAdded(true);
+    window.setTimeout(() => setAdded(false), 2000);
   };
 
   return (
     <main className="product-details-page">
-
-      {/* Breadcrumb */}
-
-      <div className="product-breadcrumb">
+      <nav className="product-breadcrumb" aria-label="Breadcrumb">
         <Link to="/">Home</Link>
         <span>/</span>
-
         <Link to="/shop">Shop</Link>
         <span>/</span>
-
         <span>{name}</span>
-      </div>
-
-      {/* Product */}
+      </nav>
 
       <section className="product-details">
-
         <div className="product-details-container">
-
-          {/* IMAGE */}
-
+          {/* Product image */}
           <div className="product-details-image">
-
             {discount > 0 && (
               <span className="product-details-discount">
                 {discount}% OFF
@@ -217,68 +194,40 @@ const ProductDetails = () => {
             )}
 
             <img
-              src={image}
+              src={image || "/images/product-placeholder.jpg"}
               alt={name}
-              onError={(e) => {
-                e.currentTarget.src =
+              onError={(event) => {
+                event.currentTarget.onerror = null;
+                event.currentTarget.src =
                   "/images/product-placeholder.jpg";
               }}
             />
 
             <div className="product-wishlist">
-              <WishlistButton
-                productId={product.id}
-              />
+              <WishlistButton product={product} />
             </div>
-
           </div>
 
-          {/* INFORMATION */}
-
+          {/* Product information */}
           <div className="product-details-info">
-
-            <span className="product-details-category">
-              {category}
-            </span>
+            <span className="product-details-category">{category}</span>
 
             <h1>{name}</h1>
 
-            <div className="product-details-rating">
-
-              <RatingStars rating={rating} />
-
-              <span>
-                {rating} · {reviews} Reviews
-              </span>
-
-            </div>
-
             <div className="product-details-price">
-
-              <strong>
-                ₹{price}
-              </strong>
-
-              {oldPrice && (
-                <del>
-                  ₹{oldPrice}
-                </del>
-              )}
+              <strong>₹{Number(price).toFixed(0)}</strong>
 
               {discount > 0 && (
-                <span>
-                  {discount}% OFF
-                </span>
+                <>
+                  <del>₹{Number(oldPrice).toFixed(0)}</del>
+                  <span>{discount}% OFF</span>
+                </>
               )}
-
             </div>
 
-            <p className="product-details-description">
-              {description}
-            </p>
+            <p className="product-details-description">{description}</p>
 
             <div className="product-details-meta">
-
               <div>
                 <span>Weight</span>
                 <strong>{weight}</strong>
@@ -286,78 +235,71 @@ const ProductDetails = () => {
 
               <div>
                 <span>Availability</span>
-
-                <strong
-                  className={
-                    stock
-                      ? "available"
-                      : "unavailable"
-                  }
-                >
-                  {stock
-                    ? "In Stock"
-                    : "Out of Stock"}
+                <strong className={inStock ? "available" : "unavailable"}>
+                  {inStock ? "In Stock" : "Out of Stock"}
                 </strong>
               </div>
-
             </div>
 
-            {/* QUANTITY */}
-
-            {stock && (
+            {/* Quantity selector */}
+            {inStock && (
               <div className="product-quantity">
-
                 <span>Quantity</span>
 
                 <div className="quantity-control">
-
                   <button
                     type="button"
                     onClick={decreaseQuantity}
+                    disabled={quantity <= 1}
+                    aria-label="Decrease quantity"
                   >
-                    −
+                    <Minus size={15} />
                   </button>
 
-                  <span>{quantity}</span>
+                  <span aria-live="polite">{quantity}</span>
 
                   <button
                     type="button"
                     onClick={increaseQuantity}
+                    disabled={quantity >= stockValue}
+                    aria-label="Increase quantity"
                   >
-                    +
+                    <Plus size={15} />
                   </button>
-
                 </div>
-
               </div>
             )}
 
-            {/* ADD CART */}
-
+            {/* Add to cart */}
             <button
               type="button"
               className="product-add-cart"
-              disabled={!stock}
+              disabled={!inStock}
               onClick={handleAddToCart}
             >
-              {stock
-                ? `Add to Cart — ₹${price * quantity}`
-                : "Currently Unavailable"}
+              {!inStock ? (
+                "Currently Unavailable"
+              ) : added ? (
+                <>
+                  <Check size={18} />
+                  Added to Cart
+                </>
+              ) : (
+                <>
+                  <ShoppingBag size={18} />
+                  Add to Cart — ₹{Number(price) * quantity}
+                </>
+              )}
             </button>
 
             <div className="product-details-note">
-              Freshly packed • Authentic Indian spices •
-              Delivered across India
+              Freshly packed • Authentic Indian spices • Delivered across India
             </div>
-
           </div>
-
         </div>
-
       </section>
-
     </main>
   );
-};
+}
 
 export default ProductDetails;

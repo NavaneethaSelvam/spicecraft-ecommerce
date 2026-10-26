@@ -29,7 +29,7 @@
 
 .tracking-header h1 {
   margin: 0 0 12px;
-  color: #422719;
+  color: #1c1917;
   font-size: clamp(30px, 4vw, 46px);
   font-weight: 800;
   line-height: 1.2;
@@ -78,7 +78,7 @@
 }
 
 .order-info strong {
-  color: #422719;
+  color: #1c1917;
   font-size: 15px;
   overflow-wrap: anywhere;
 }
@@ -105,7 +105,7 @@
 
 .tracking-status h2 {
   margin: 17px 0 10px;
-  color: #422719;
+  color: #1c1917;
   font-size: clamp(22px, 3vw, 29px);
   font-weight: 800;
 }
@@ -207,7 +207,7 @@
 .tracking-order-items h2,
 .tracking-address h2 {
   margin: 0 0 22px;
-  color: #422719;
+  color: #1c1917;
   font-size: 21px;
   font-weight: 800;
 }
@@ -243,7 +243,7 @@
 }
 
 .tracking-product-details strong {
-  color: #422719;
+  color: #1c1917;
   font-size: 15px;
   line-height: 1.5;
   overflow-wrap: anywhere;
@@ -255,7 +255,7 @@
 }
 
 .tracking-product > strong {
-  color: #422719;
+  color: #1c1917;
   font-size: 15px;
   white-space: nowrap;
 }
@@ -285,7 +285,7 @@
 }
 
 .tracking-total strong {
-  color: #422719;
+  color: #1c1917;
   font-size: 14px;
   text-align: right;
 }
@@ -297,7 +297,7 @@
 }
 
 .tracking-grand-total span {
-  color: #422719;
+  color: #1c1917;
   font-size: 16px;
   font-weight: 800;
 }
@@ -330,7 +330,7 @@
 }
 
 .tracking-address p strong {
-  color: #422719;
+  color: #1c1917;
   font-size: 15px;
 }
 
@@ -412,7 +412,7 @@
 
 .tracking-empty h2 {
   margin: 0 0 12px;
-  color: #422719;
+  color: #1c1917;
   font-size: 25px;
 }
 

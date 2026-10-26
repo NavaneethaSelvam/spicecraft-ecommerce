@@ -10,7 +10,7 @@
 }
 
 .cart-eyebrow {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -24,7 +24,7 @@
 
 .cart-heading p {
   margin: 0;
-  color: #766b63;
+  color: #44403c;
   font-size: 14px;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .cart-item-category {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -120,7 +120,7 @@
   border: none;
   background: #f8f1eb;
 
-  color: #3b2118;
+  color: #1c1917;
   font-size: 17px;
   cursor: pointer;
 }
@@ -139,7 +139,7 @@
 .remove-item {
   border: none;
   background: transparent;
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 12px;
   cursor: pointer;
 }
@@ -150,7 +150,7 @@
 
 .cart-item-price {
   align-self: center;
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 18px;
 }
 
@@ -158,7 +158,7 @@
   width: fit-content;
   margin-top: 5px;
 
-  color: #a33b20;
+  color: #8c3b1e;
   text-decoration: none;
   font-size: 13px;
   font-weight: 600;
@@ -192,7 +192,7 @@
   background: #f8f1eb;
   border-radius: 8px;
 
-  color: #766b63;
+  color: #44403c;
   font-size: 12px;
   line-height: 1.5;
 }
@@ -222,7 +222,7 @@
 }
 
 .coupon-box input:focus {
-  border-color: #a33b20;
+  border-color: #8c3b1e;
 }
 
 .coupon-box button {
@@ -251,12 +251,12 @@
 .summary-row {
   margin-bottom: 15px;
 
-  color: #766b63;
+  color: #44403c;
   font-size: 14px;
 }
 
 .summary-row strong {
-  color: #3b2118;
+  color: #1c1917;
 }
 
 .summary-divider {
@@ -277,7 +277,7 @@
 }
 
 .summary-total strong {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 24px;
 }
 
@@ -335,7 +335,7 @@
 
 .empty-cart p {
   margin-bottom: 25px;
-  color: #766b63;
+  color: #44403c;
 }
 
 .cart-shop-btn {

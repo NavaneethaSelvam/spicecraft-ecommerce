@@ -1,5 +1,6 @@
+
 import React from "react";
-import "./Pagination.css";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Pagination = ({
   currentPage = 1,
@@ -22,18 +23,34 @@ const Pagination = ({
     }
   };
 
+  const buttonBase =
+    "inline-flex h-9 items-center justify-center gap-1 rounded-full border px-3 text-xs font-semibold transition sm:h-10 sm:px-4 sm:text-sm";
+
+  const inactiveButton =
+    "border-[#e7d8c7] bg-white text-[#654a35] hover:border-[#b78b62] hover:bg-[#faf3e9]";
+
+  const disabledButton =
+    "cursor-not-allowed border-[#eee7de] bg-[#f7f4ef] text-[#b7aa9b]";
+
   return (
-    <nav className="pagination" aria-label="Product pagination">
+    <nav
+      className="flex w-full flex-wrap items-center justify-center gap-2"
+      aria-label="Product pagination"
+    >
       <button
         type="button"
-        className="pagination-btn"
         onClick={handlePrevious}
         disabled={currentPage === 1}
+        className={`${buttonBase} ${
+          currentPage === 1 ? disabledButton : inactiveButton
+        }`}
       >
-        ← Previous
+        <ChevronLeft size={16} />
+        <span className="hidden sm:inline">Previous</span>
+        <span className="sm:hidden">Prev</span>
       </button>
 
-      <div className="pagination-pages">
+      <div className="flex flex-wrap items-center justify-center gap-1.5">
         {Array.from(
           { length: totalPages },
           (_, index) => index + 1
@@ -41,10 +58,14 @@ const Pagination = ({
           <button
             type="button"
             key={page}
-            className={`pagination-page ${
-              currentPage === page ? "active" : ""
-            }`}
+            aria-label={`Go to page ${page}`}
+            aria-current={currentPage === page ? "page" : undefined}
             onClick={() => onPageChange?.(page)}
+            className={`h-9 min-w-9 rounded-full px-2 text-xs font-bold transition sm:h-10 sm:min-w-10 sm:text-sm ${
+              currentPage === page
+                ? "bg-[#754426] text-white shadow-sm"
+                : "border border-[#e7d8c7] bg-white text-[#654a35] hover:bg-[#f5eadb]"
+            }`}
           >
             {page}
           </button>
@@ -53,11 +74,16 @@ const Pagination = ({
 
       <button
         type="button"
-        className="pagination-btn"
         onClick={handleNext}
         disabled={currentPage === totalPages}
+        className={`${buttonBase} ${
+          currentPage === totalPages
+            ? disabledButton
+            : inactiveButton
+        }`}
       >
-        Next →
+        <span>Next</span>
+        <ChevronRight size={16} />
       </button>
     </nav>
   );

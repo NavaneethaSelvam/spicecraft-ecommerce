@@ -14,7 +14,7 @@
 }
 
 .blog-details-breadcrumb a {
-  color: #a33b20;
+  color: #8c3b1e;
   text-decoration: none;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .blog-article-header > span {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -39,7 +39,7 @@
 
 .blog-article-header h1 {
   margin: 14px 0 20px;
-  color: #3b2118;
+  color: #1c1917;
   font-size: 46px;
   line-height: 1.15;
 }
@@ -83,13 +83,13 @@
 
 .blog-article-content h2 {
   margin-bottom: 10px;
-  color: #3b2118;
+  color: #1c1917;
   font-size: 25px;
 }
 
 .blog-article-content p {
   margin: 0;
-  color: #765f55;
+  color: #44403c;
   font-size: 15px;
   line-height: 1.9;
 }
@@ -102,11 +102,11 @@
 
 .blog-article-bottom h2 {
   margin: 0 0 8px;
-  color: #3b2118;
+  color: #1c1917;
 }
 
 .blog-article-bottom p {
-  color: #765f55;
+  color: #44403c;
 }
 
 .blog-article-bottom div {
@@ -130,7 +130,7 @@
 
 .blog-article-bottom a:last-child {
   border: 1px solid #d8c9bf;
-  color: #3b2118;
+  color: #1c1917;
   background: white;
 }
 
@@ -143,21 +143,21 @@
 }
 
 .blog-details-not-found span {
-  color: #a33b20;
+  color: #8c3b1e;
   font-weight: 700;
   letter-spacing: 2px;
 }
 
 .blog-details-not-found h1 {
-  color: #3b2118;
+  color: #1c1917;
 }
 
 .blog-details-not-found p {
-  color: #765f55;
+  color: #44403c;
 }
 
 .blog-details-not-found a {
-  color: #a33b20;
+  color: #8c3b1e;
   font-weight: 600;
 }
 

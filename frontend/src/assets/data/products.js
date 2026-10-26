@@ -1,3 +1,4 @@
+
 const products = [
   {
     id: 1,
@@ -11,9 +12,8 @@ const products = [
     weight: "100g",
     spiceLevel: "Medium",
     description:
-      "Aromatic spice blend specially crafted to make delicious and flavourful chicken biryani.",
+      "An aromatic spice blend crafted to make delicious and flavourful chicken biryani.",
   },
-
   {
     id: 2,
     name: "Mutton Biryani Masala",
@@ -28,7 +28,6 @@ const products = [
     description:
       "A rich and aromatic masala blend for authentic mutton biryani.",
   },
-
   {
     id: 3,
     name: "Sambar Powder",
@@ -43,7 +42,6 @@ const products = [
     description:
       "Traditional South Indian sambar powder made with carefully selected spices.",
   },
-
   {
     id: 4,
     name: "Rasam Powder",
@@ -56,9 +54,8 @@ const products = [
     weight: "100g",
     spiceLevel: "Medium",
     description:
-      "Aromatic rasam blend that brings authentic homemade flavour to your meals.",
+      "An aromatic rasam blend that brings authentic homemade flavour to your meals.",
   },
-
   {
     id: 5,
     name: "Chettinad Masala",
@@ -71,9 +68,8 @@ const products = [
     weight: "100g",
     spiceLevel: "Hot",
     description:
-      "Bold and aromatic Chettinad spice blend with authentic South Indian flavours.",
+      "A bold and aromatic Chettinad spice blend inspired by South Indian cuisine.",
   },
-
   {
     id: 6,
     name: "Garam Masala",
@@ -82,13 +78,12 @@ const products = [
     originalPrice: 149,
     rating: 4.7,
     reviews: 91,
-    category: "Blended Masala",
+    category: "Spice Blends",
     weight: "100g",
     spiceLevel: "Medium",
     description:
-      "Perfectly balanced Indian spice blend for curries, gravies and rice dishes.",
+      "A balanced Indian spice blend for curries, gravies and rice dishes.",
   },
-
   {
     id: 7,
     name: "Curry Masala",
@@ -97,13 +92,12 @@ const products = [
     originalPrice: 135,
     rating: 4.6,
     reviews: 76,
-    category: "Blended Masala",
+    category: "Spice Blends",
     weight: "100g",
     spiceLevel: "Medium",
     description:
-      "Everyday curry masala for rich, aromatic and delicious homemade curries.",
+      "An everyday curry masala for rich and aromatic homemade curries.",
   },
-
   {
     id: 8,
     name: "Idli Podi",
@@ -112,13 +106,12 @@ const products = [
     originalPrice: 109,
     rating: 4.8,
     reviews: 143,
-    category: "South Indian",
+    category: "Podis",
     weight: "100g",
     spiceLevel: "Hot",
     description:
       "Traditional South Indian idli podi with a delicious roasted spice flavour.",
   },
-
   {
     id: 9,
     name: "Garlic Podi",
@@ -127,13 +120,12 @@ const products = [
     originalPrice: 125,
     rating: 4.7,
     reviews: 87,
-    category: "South Indian",
+    category: "Podis",
     weight: "100g",
     spiceLevel: "Medium",
     description:
       "Flavourful garlic podi made with roasted spices for an authentic taste.",
   },
-
   {
     id: 10,
     name: "Turmeric Powder",
@@ -142,13 +134,12 @@ const products = [
     originalPrice: 99,
     rating: 4.9,
     reviews: 210,
-    category: "Spice Powders",
+    category: "Pure Spices",
     weight: "100g",
     spiceLevel: "Mild",
     description:
-      "Premium quality turmeric powder with vibrant colour and authentic flavour.",
+      "Turmeric powder with a vibrant golden colour and earthy flavour.",
   },
-
   {
     id: 11,
     name: "Chilli Powder",
@@ -157,13 +148,12 @@ const products = [
     originalPrice: 109,
     rating: 4.8,
     reviews: 187,
-    category: "Spice Powders",
+    category: "Pure Spices",
     weight: "100g",
     spiceLevel: "Hot",
     description:
-      "Fresh and vibrant chilli powder for adding colour and spice to your dishes.",
+      "Red chilli powder for adding colour and heat to your favourite dishes.",
   },
-
   {
     id: 12,
     name: "Coriander Powder",
@@ -172,11 +162,209 @@ const products = [
     originalPrice: 99,
     rating: 4.7,
     reviews: 164,
-    category: "Spice Powders",
+    category: "Pure Spices",
     weight: "100g",
     spiceLevel: "Mild",
     description:
-      "Freshly packed coriander powder with a rich aroma and authentic taste.",
+      "Aromatic coriander powder for everyday curries and traditional recipes.",
+  },
+  {
+    id: 13,
+    name: "Chicken 65 Masala",
+    image: "/images/chicken-65-masala.jpg",
+    price: 119,
+    originalPrice: 149,
+    rating: 4.8,
+    reviews: 105,
+    category: "Spice Blends",
+    weight: "100g",
+    spiceLevel: "Hot",
+    description:
+      "A spicy seasoning blend for crispy and flavourful Chicken 65.",
+  },
+  {
+    id: 14,
+    name: "Mutton Masala",
+    image: "/images/mutton-masala.jpg",
+    price: 139,
+    originalPrice: 169,
+    rating: 4.7,
+    reviews: 89,
+    category: "Spice Blends",
+    weight: "100g",
+    spiceLevel: "Hot",
+    description:
+      "A robust spice blend for flavourful mutton curries and gravies.",
+  },
+  {
+    id: 15,
+    name: "Fish Fry Masala",
+    image: "/images/fish-fry-masala.jpg",
+    price: 119,
+    originalPrice: 145,
+    rating: 4.6,
+    reviews: 78,
+    category: "Spice Blends",
+    weight: "100g",
+    spiceLevel: "Hot",
+    description:
+      "A flavourful spice blend for traditional Indian-style fish fry.",
+  },
+  {
+    id: 16,
+    name: "Paneer Masala",
+    image: "/images/paneer-masala.jpg",
+    price: 119,
+    originalPrice: 145,
+    rating: 4.7,
+    reviews: 94,
+    category: "Spice Blends",
+    weight: "100g",
+    spiceLevel: "Medium",
+    description:
+      "A balanced spice blend for creamy paneer curries and gravies.",
+  },
+  {
+    id: 17,
+    name: "Chana Masala",
+    image: "/images/chana-masala.jpg",
+    price: 109,
+    originalPrice: 135,
+    rating: 4.7,
+    reviews: 86,
+    category: "Spice Blends",
+    weight: "100g",
+    spiceLevel: "Medium",
+    description:
+      "A fragrant masala blend for delicious chickpea curries and North Indian dishes.",
+  },
+  {
+    id: 18,
+    name: "Black Pepper Powder",
+    image: "/images/black-pepper-powder.jpg",
+    price: 109,
+    originalPrice: 135,
+    rating: 4.8,
+    reviews: 117,
+    category: "Pure Spices",
+    weight: "100g",
+    spiceLevel: "Hot",
+    description:
+      "Ground black pepper with a bold aroma and distinctive peppery flavour.",
+  },
+  {
+    id: 19,
+    name: "Pav Bhaji Masala",
+    image: "/images/pav-bhaji-masala.jpg",
+    price: 109,
+    originalPrice: 129,
+    rating: 4.6,
+    reviews: 72,
+    category: "Spice Blends",
+    weight: "100g",
+    spiceLevel: "Medium",
+    description:
+      "A tangy and aromatic spice blend for flavourful Mumbai-style pav bhaji.",
+  },
+  {
+    id: 20,
+    name: "Kulambu Masala",
+    image: "/images/kulambu-masala.jpg",
+    price: 109,
+    originalPrice: 135,
+    rating: 4.8,
+    reviews: 101,
+    category: "Spice Blends",
+    weight: "100g",
+    spiceLevel: "Hot",
+    description:
+      "A traditional Tamil-style spice blend for rich and flavourful kulambu.",
+  },
+
+  // Pickles
+  {
+    id: 21,
+    name: "Mango Pickle",
+    image: "/images/mango-pickle.jpg",
+    price: 129,
+    originalPrice: 149,
+    rating: 4.8,
+    reviews: 86,
+    category: "Pickles",
+    weight: "200g",
+    spiceLevel: "Hot",
+    description:
+      "Tangy mango pieces blended with traditional Indian spices.",
+  },
+  {
+    id: 22,
+    name: "Lemon Pickle",
+    image: "/images/lemon-pickle.jpg",
+    price: 119,
+    originalPrice: 139,
+    rating: 4.7,
+    reviews: 74,
+    category: "Pickles",
+    weight: "200g",
+    spiceLevel: "Medium",
+    description:
+      "Zesty lemon pickle with a delicious spicy flavour.",
+  },
+  {
+    id: 23,
+    name: "Mixed Vegetable Pickle",
+    image: "/images/mixed-pickle.jpg",
+    price: 139,
+    originalPrice: 159,
+    rating: 4.6,
+    reviews: 62,
+    category: "Pickles",
+    weight: "200g",
+    spiceLevel: "Medium",
+    description:
+      "A flavourful mix of vegetables and aromatic Indian spices.",
+  },
+  {
+    id: 24,
+    name: "Garlic Pickle",
+    image: "/images/garlic-pickle.jpg",
+    price: 149,
+    originalPrice: 169,
+    rating: 4.7,
+    reviews: 58,
+    category: "Pickles",
+    weight: "200g",
+    spiceLevel: "Hot",
+    description:
+      "Spicy garlic cloves packed with rich Indian flavours.",
+  },
+  {
+    id: 25,
+    name: "Amla Pickle",
+    image: "/images/amla-pickle.jpg",
+    price: 129,
+    originalPrice: 149,
+    rating: 4.6,
+    reviews: 49,
+    category: "Pickles",
+    weight: "200g",
+    spiceLevel: "Medium",
+    description:
+      "Tangy amla pieces mixed with traditional Indian spices.",
+  },
+  {
+    id: 26,
+    name: "Chilli Pickle",
+    image: "/images/chilli-pickle.jpg",
+    price: 119,
+    originalPrice: 139,
+    rating: 4.7,
+    reviews: 53,
+    category: "Pickles",
+    weight: "200g",
+    spiceLevel: "Hot",
+    description:
+      "Hot green chillies blended with savoury Indian spices.",
   },
 ];
 

@@ -1,452 +1,381 @@
-/* =========================================
-   SPICECRAFT - APP COMMON STYLES
-========================================= */
 
-/* =========================================
-   ROOT APP
-========================================= */
+/* ========================================
+   SPICECRAFT — APP LAYOUT
+   Tailwind CSS v4 compatible
+======================================== */
+
+/* Root application layout */
 
 #root {
   min-height: 100vh;
 }
 
 .app {
-  min-height: 100vh;
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
 }
 
+.app > main,
 main {
-  flex: 1;
+  flex: 1 0 auto;
+  min-width: 0;
 }
 
-
-/* =========================================
-   COMMON PAGE LAYOUT
-========================================= */
+/* Shared page layout */
 
 .page {
   width: 100%;
-  min-height: 70vh;
+  min-height: 65vh;
 }
 
-.page-container {
-  width: min(1200px, 92%);
-  margin: 0 auto;
+.page-container,
+.section-container {
+  width: min(1320px, 92%);
+  margin-inline: auto;
 }
 
-
-/* =========================================
-   PAGE HEADING
-========================================= */
+/* Page heading */
 
 .page-heading {
-  width: min(1200px, 92%);
-  margin: 0 auto;
-  padding: 60px 0 40px;
-  text-align: center;
+  width: min(1320px, 92%);
+  margin-inline: auto;
+  padding: 40px 0 28px;
+  text-align: left;
 }
 
 .page-heading h1 {
   margin: 8px 0 12px;
-  font-size: clamp(32px, 5vw, 52px);
-  line-height: 1.1;
+  color: #1c1917;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 4vw, 46px);
   font-weight: 700;
-  color: #24150e;
+  line-height: 1.15;
 }
 
 .page-heading p {
-  max-width: 650px;
-  margin: 0 auto;
-  color: #75675f;
-  font-size: 16px;
+  max-width: 680px;
+  margin: 0;
+  color: #44403c;
+  font-size: 15px;
   line-height: 1.7;
 }
 
-
-/* =========================================
-   EYEBROW
-========================================= */
+/* Eyebrow */
 
 .eyebrow {
   display: inline-block;
-  color: #9b5b25;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
+  color: #8c3b1e;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-
-/* =========================================
-   SECTION
-========================================= */
+/* Sections */
 
 .section {
   width: 100%;
-  padding: 80px 0;
+  padding: 28px 0;
 }
 
-.section-container {
-  width: min(1200px, 92%);
-  margin: 0 auto;
-}
-
-
-/* =========================================
-   SECTION HEADING
-========================================= */
+/* Section heading */
 
 .section-heading {
-  margin-bottom: 45px;
-  text-align: center;
+  margin-bottom: 24px;
+  text-align: left;
 }
 
 .section-heading .eyebrow {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .section-heading h2 {
   margin: 0;
-  color: #24150e;
-  font-size: clamp(30px, 4vw, 46px);
-  line-height: 1.15;
+  color: #1c1917;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(25px, 3vw, 34px);
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .section-heading p {
   max-width: 650px;
-  margin: 14px auto 0;
-  color: #75675f;
-  font-size: 16px;
+  margin: 10px 0 0;
+  color: #44403c;
+  font-size: 14px;
   line-height: 1.7;
 }
 
-
-/* =========================================
-   COMMON BUTTON
-========================================= */
+/* Button compatibility for older components */
 
 .btn {
   display: inline-flex;
+  min-height: 42px;
   align-items: center;
   justify-content: center;
   gap: 8px;
-
-  padding: 13px 24px;
-
-  border: none;
-  border-radius: 5px;
-
-  font-size: 14px;
-  font-weight: 600;
-
+  padding: 10px 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
   cursor: pointer;
-
   transition:
-    transform 0.3s ease,
-    background 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-
-/* =========================================
-   PRIMARY BUTTON
-========================================= */
-
-.btn-primary {
-  background: #7b351f;
-  color: #ffffff;
-}
-
-.btn-primary:hover {
-  background: #5d2516;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(123, 53, 31, 0.2);
-}
-
-
-/* =========================================
-   SECONDARY BUTTON
-========================================= */
-
-.btn-secondary {
-  background: #f3e5d2;
-  color: #5c2d1c;
-}
-
-.btn-secondary:hover {
-  background: #e7d0b2;
-  transform: translateY(-2px);
-}
-
-
-/* =========================================
-   OUTLINE BUTTON
-========================================= */
-
-.btn-outline {
-  background: transparent;
-  color: #7b351f;
-  border: 1px solid #7b351f;
-}
-
-.btn-outline:hover {
-  background: #7b351f;
-  color: #ffffff;
-}
-
-
-/* =========================================
-   COMMON GRID
-========================================= */
-
-.grid {
-  display: grid;
-  gap: 24px;
-}
-
-.grid-2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.grid-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.grid-4 {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-
-/* =========================================
-   COMMON CARD
-========================================= */
-
-.card {
-  background: #ffffff;
-  border: 1px solid #eee5dc;
-  border-radius: 10px;
-  overflow: hidden;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(55, 32, 18, 0.1);
-}
-
-
-/* =========================================
-   COMMON FORM
-========================================= */
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  color: #352219;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-input,
-select,
-textarea {
-  width: 100%;
-
-  padding: 12px 14px;
-
-  border: 1px solid #ddd1c5;
-  border-radius: 5px;
-
-  outline: none;
-
-  background: #ffffff;
-  color: #24150e;
-
-  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: #9b5b25;
-  box-shadow: 0 0 0 3px rgba(155, 91, 37, 0.08);
+.btn-primary {
+  background: #784323;
+  color: #fff;
 }
 
+.btn-primary:hover {
+  transform: translateY(-1px);
+  background: #482718;
+  box-shadow: 0 5px 14px rgb(72 39 24 / 16%);
+}
+
+.btn-secondary {
+  border-color: #eadbca;
+  background: #f7ead9;
+  color: #482718;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  background: #efddc6;
+}
+
+.btn-outline {
+  border-color: #8c3b1e;
+  background: transparent;
+  color: #8c3b1e;
+}
+
+.btn-outline:hover {
+  background: #784323;
+  color: #fff;
+}
+
+/* Legacy grid compatibility */
+
+.grid {
+  display: grid;
+  min-width: 0;
+  gap: 20px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Legacy card compatibility */
+
+.card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #eee5dc;
+  border-radius: 10px;
+  background: #fffdf9;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.card:hover {
+  border-color: #e4d0bc;
+  box-shadow: 0 10px 28px rgb(58 35 21 / 10%);
+}
+
+/* Forms */
+
+.form-group {
+  min-width: 0;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  color: #1c1917;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/*
+  Avoid global input width and padding here.
+  Header search and Tailwind forms need their
+  own dimensions. index.css handles shared
+  form styling.
+*/
+
 textarea {
-  min-height: 120px;
+  min-height: 110px;
   resize: vertical;
 }
 
-
-/* =========================================
-   COMMON DIVIDER
-========================================= */
+/* Dividers */
 
 .divider {
   width: 100%;
   height: 1px;
-  background: #eee5dc;
+  background: #eadfd3;
 }
 
 .section-divider {
-  width: 60px;
+  width: 56px;
   height: 2px;
-  margin: 16px auto;
-  background: #9b5b25;
+  margin: 14px 0;
+  background: #a96532;
 }
 
-
-/* =========================================
-   COMMON LINK
-========================================= */
+/* Text links */
 
 .text-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-
-  color: #7b351f;
+  color: #8c3b1e;
   font-weight: 600;
-
-  transition: gap 0.3s ease;
+  transition: gap 0.2s ease;
 }
 
 .text-link:hover {
-  gap: 10px;
+  gap: 9px;
 }
 
-
-/* =========================================
-   EMPTY STATE
-========================================= */
+/* Empty states */
 
 .empty-products,
 .empty-cart {
-  padding: 70px 20px;
+  padding: 48px 20px;
+  color: #44403c;
   text-align: center;
-  color: #75675f;
 }
 
 .empty-products h3,
 .empty-cart h3 {
   margin-bottom: 8px;
-  color: #352219;
+  color: #1c1917;
 }
 
-
-/* =========================================
-   LOADING
-========================================= */
+/* Loading state */
 
 .loading {
-  min-height: 300px;
-
   display: flex;
+  min-height: 240px;
   align-items: center;
   justify-content: center;
-
-  color: #75675f;
+  color: #44403c;
 }
 
-
-/* =========================================
-   SCROLLBAR
-========================================= */
+/* Scrollbar */
 
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f5eee7;
+  background: #fff3e3;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #9b5b25;
-  border-radius: 10px;
+  border-radius: 999px;
+  background: #a96532;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7b351f;
+  background: #784323;
 }
 
-
-/* =========================================
-   TEXT SELECTION
-========================================= */
-
-::selection {
-  background: #e8d1b3;
-  color: #24150e;
-}
-
-
-/* =========================================
-   RESPONSIVE - TABLET
-========================================= */
+/* Tablet */
 
 @media (max-width: 992px) {
-  .grid-4 {
-    grid-template-columns: repeat(2, 1fr);
+  .page-container,
+  .section-container,
+  .page-heading {
+    width: 94%;
   }
 
+  .grid-4,
   .grid-3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .section {
-    padding: 65px 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .page-heading {
-    padding: 50px 0 35px;
+    padding: 32px 0 24px;
   }
 }
 
-
-/* =========================================
-   RESPONSIVE - MOBILE
-========================================= */
+/* Mobile */
 
 @media (max-width: 600px) {
-  .grid-2,
-  .grid-3,
-  .grid-4 {
-    grid-template-columns: 1fr;
-  }
-
-  .section {
-    padding: 50px 0;
+  .page-container,
+  .section-container,
+  .page-heading {
+    width: 92%;
   }
 
   .page-heading {
-    padding: 40px 0 30px;
+    padding: 28px 0 20px;
   }
 
   .page-heading h1 {
-    font-size: 34px;
+    font-size: clamp(28px, 8vw, 34px);
+  }
+
+  .page-heading p {
+    font-size: 14px;
+  }
+
+  .section {
+    padding: 20px 0;
   }
 
   .section-heading {
-    margin-bottom: 30px;
+    margin-bottom: 18px;
   }
 
   .section-heading h2 {
-    font-size: 30px;
+    font-size: 26px;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
   }
 
   .btn {
-    padding: 12px 18px;
+    min-height: 40px;
+    padding: 10px 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

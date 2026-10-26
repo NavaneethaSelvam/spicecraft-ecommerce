@@ -1,6 +1,6 @@
 .export-page {
   background: #fffaf5;
-  color: #3b2118;
+  color: #1c1917;
 }
 
 /* HERO */
@@ -76,12 +76,12 @@
 .export-intro-text h2 span,
 .export-form-heading h2 span,
 .export-bottom h2 span {
-  color: #a33b20;
+  color: #8c3b1e;
 }
 
 .export-intro-text p {
   margin-bottom: 18px;
-  color: #6d554b;
+  color: #44403c;
   font-size: 17px;
   line-height: 1.8;
 }
@@ -100,7 +100,7 @@
 }
 
 .export-highlight strong {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 13px;
   letter-spacing: 2px;
 }
@@ -112,7 +112,7 @@
 
 .export-highlight p {
   margin: 0;
-  color: #6d554b;
+  color: #44403c;
   line-height: 1.7;
 }
 
@@ -134,7 +134,7 @@
 
 .export-form-heading p {
   max-width: 650px;
-  color: #6d554b;
+  color: #44403c;
   line-height: 1.8;
 }
 
@@ -172,7 +172,7 @@
   border: 1px solid #d8c8bd;
   background: #fff;
 
-  color: #3b2118;
+  color: #1c1917;
   font-family: inherit;
   font-size: 15px;
 
@@ -187,7 +187,7 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #a33b20;
+  border-color: #8c3b1e;
 }
 
 .export-submit-btn {
@@ -234,7 +234,7 @@
   max-width: 620px;
   margin: 0 auto;
 
-  color: #6d554b;
+  color: #44403c;
   line-height: 1.8;
 }
 

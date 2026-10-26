@@ -1,16 +1,18 @@
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 import api from "../api";
 import ProductGrid from "../components/ProductGrid";
 import ProductFilter from "../components/ProductFilter";
 import SortDropdown from "../components/SortDropdown";
 import Pagination from "../components/Pagination";
-import useCartStore from "../store/cartStore";
 
 import "./Shop.css";
 
-// SHOP CATEGORIES
+// =====================================================
+// SHOP FILTER CATEGORIES
+// =====================================================
+
 const categories = [
   {
     id: "masala",
@@ -22,147 +24,339 @@ const categories = [
   },
 ];
 
-// FORMAT BACKEND PRODUCT DATA
-const formatProduct = (item, index) => {
-  const rawCategory = String(item.category ?? "")
+// =====================================================
+// NORMALIZE CATEGORY
+// =====================================================
+
+const normalizeCategory = (rawCategory) => {
+  const categoryText = String(rawCategory ?? "")
     .toLowerCase()
     .replace(/_/g, "-")
     .trim();
 
-  const isWholeSpice =
-    rawCategory.includes("whole-spice") ||
-    rawCategory.includes("whole spice") ||
-    rawCategory.includes("peppercorn") ||
-    rawCategory.includes("seeds");
+  const wholeSpiceWords = [
+    "whole-spice",
+    "whole spices",
+    "whole spice",
+    "seeds",
+    "peppercorn",
+  ];
 
-  const imagePath =
+  return wholeSpiceWords.some((word) => categoryText.includes(word))
+    ? "whole-spices"
+    : "masala";
+};
+
+// =====================================================
+// FORMAT BACKEND PRODUCT
+// =====================================================
+
+const formatProduct = (item, index) => ({
+  ...item,
+
+  id: item.id ?? item.product_id ?? index + 1,
+
+  name:
+    item.name ??
+    item.product_name ??
+    item.title ??
+    "SpiceCraft Product",
+
+  image:
     item.image ??
     item.image_url ??
     item.imageUrl ??
     item.product_image ??
-    "/images/product-placeholder.jpg";
+    "/images/product-placeholder.jpg",
 
-  return {
-    ...item,
+  price: Number(
+    item.price ??
+      item.selling_price ??
+      item.discount_price ??
+      0
+  ),
 
-    id: item.id ?? item.product_id ?? index + 1,
+  oldPrice:
+    item.oldPrice != null
+      ? Number(item.oldPrice)
+      : item.old_price != null
+        ? Number(item.old_price)
+        : item.original_price != null
+          ? Number(item.original_price)
+          : undefined,
 
-    name:
-      item.name ??
-      item.product_name ??
-      item.title ??
-      "SpiceCraft Product",
+  rating: Number(item.rating ?? item.average_rating ?? 4.5),
 
-    image: imagePath,
+  category: normalizeCategory(
+    item.category_name ?? item.category
+  ),
 
-    price: Number(
-      item.price ??
-        item.selling_price ??
-        item.discount_price ??
-        0
-    ),
+  weight:
+    item.weight ??
+    item.weight_label ??
+    item.quantity ??
+    "100g",
+});
 
-    oldPrice:
-      item.oldPrice != null
-        ? Number(item.oldPrice)
-        : item.old_price != null
-          ? Number(item.old_price)
-          : item.original_price != null
-            ? Number(item.original_price)
-            : undefined,
+// =====================================================
+// NORMALIZE IMAGE IDENTIFIERS
+// Supports full URLs, relative URLs and RustFS object keys
+// =====================================================
 
-    description: item.description ?? "",
+const getImageIdentifiers = (value) => {
+  if (typeof value !== "string" || !value.trim()) {
+    return [];
+  }
 
-    category: isWholeSpice ? "whole-spices" : "masala",
+  const identifiers = new Set();
+  const raw = value.trim();
 
-    stock: Number(item.stock ?? 0),
+  const addPath = (input) => {
+    if (!input) return;
 
-    rating: Number(item.rating ?? item.average_rating ?? 0),
+    let path = input;
 
-    weight:
-      item.weight ??
-      item.weight_label ??
-      item.quantity ??
-      "100g",
+    try {
+      path = decodeURIComponent(path);
+    } catch {
+      // Keep original path if decoding fails.
+    }
+
+    path = path
+      .split("?")[0]
+      .split("#")[0]
+      .replace(/\/+$/, "");
+
+    if (!path) return;
+
+    identifiers.add(path);
+    identifiers.add(path.replace(/^\/+/, ""));
+
+    // Also compare the part following the image-serving route.
+    const marker = "/product-images/";
+    const markerIndex = path.indexOf(marker);
+
+    if (markerIndex !== -1) {
+      const objectKey = path.slice(markerIndex + marker.length);
+
+      if (objectKey) {
+        identifiers.add(objectKey);
+        identifiers.add(objectKey.replace(/^\/+/, ""));
+      }
+    }
   };
+
+  addPath(raw);
+
+  try {
+    const baseURL =
+      api.defaults?.baseURL || window.location.origin;
+
+    const parsed = new URL(raw, baseURL);
+
+    addPath(parsed.pathname);
+  } catch {
+    // Relative paths are already handled above.
+  }
+
+  return [...identifiers].filter(Boolean);
 };
 
+// =====================================================
+// CHECK WHETHER MEDIA IS INACTIVE
+// =====================================================
+
+const isInactiveMedia = (asset) => {
+  return (
+    asset?.is_active === false ||
+    asset?.is_active === 0 ||
+    asset?.is_active === "false"
+  );
+};
+
+// =====================================================
 // SHOP PAGE
+// =====================================================
+
 const Shop = () => {
   const [products, setProducts] = useState([]);
+  const [mediaAssets, setMediaAssets] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [mediaError, setMediaError] = useState("");
 
-  // Connect Zustand cart store
-  const addToCart = useCartStore((state) => state.addToCart);
-
-  // Filters
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedPrice, setSelectedPrice] = useState("all");
   const [selectedRating, setSelectedRating] = useState("all");
 
-  // Sorting and pagination
   const [sortBy, setSortBy] = useState("default");
   const [currentPage, setCurrentPage] = useState(1);
 
   const productsPerPage = 6;
 
-  // FETCH PRODUCTS FROM BACKEND
-  useEffect(() => {
-    let isMounted = true;
+  // ===================================================
+  // FETCH PRODUCTS
+  // ===================================================
 
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        setError("");
+  const fetchProducts = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError("");
 
-        const response = await api.get("/products");
-        const responseData = response.data;
+      const response = await api.get("/products");
+      const responseData = response.data;
 
-        const productList = Array.isArray(responseData)
-          ? responseData
-          : Array.isArray(responseData?.products)
-            ? responseData.products
-            : Array.isArray(responseData?.items)
-              ? responseData.items
-              : [];
+      const productList = Array.isArray(responseData)
+        ? responseData
+        : Array.isArray(responseData?.products)
+          ? responseData.products
+          : Array.isArray(responseData?.items)
+            ? responseData.items
+            : [];
 
-        const activeProducts = productList.filter(
-          (item) => item.is_active !== false
-        );
-
-        const formattedProducts = activeProducts.map(
-          (item, index) => formatProduct(item, index)
-        );
-
-        if (isMounted) {
-          setProducts(formattedProducts);
-        }
-      } catch (err) {
-        console.error("Products API error:", err);
-
-        if (isMounted) {
-          setError(
-            "Unable to load products. Please check the backend server and try again."
+      const formattedProducts = productList
+        .filter((item) => {
+          // If backend supplies is_active, don't show inactive products.
+          return (
+            item?.is_active !== false &&
+            item?.is_active !== 0 &&
+            item?.is_active !== "false"
           );
-        }
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
+        })
+        .map((item, index) => formatProduct(item, index));
+
+      setProducts(formattedProducts);
+    } catch (err) {
+      console.error("Products API error:", err);
+
+      setError(
+        "Unable to load products. Please check whether the backend server is running."
+      );
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  // ===================================================
+  // FETCH PRODUCT MEDIA STATUS
+  // This endpoint should return active AND inactive media.
+  // ===================================================
+
+  const fetchMediaStatus = useCallback(async () => {
+    try {
+      setMediaError("");
+
+      const response = await api.get("/media/status", {
+        params: {
+          section: "product",
+        },
+      });
+
+      const responseData = response.data;
+
+      const assets = Array.isArray(responseData)
+        ? responseData
+        : Array.isArray(responseData?.items)
+          ? responseData.items
+          : [];
+
+      setMediaAssets(assets);
+    } catch (err) {
+      console.error("Product media status API error:", err);
+
+      setMediaError(
+        "Product image status could not be loaded."
+      );
+
+      setMediaAssets([]);
+    }
+  }, []);
+
+  // ===================================================
+  // INITIAL LOAD
+  // ===================================================
+
+  useEffect(() => {
+    fetchProducts();
+    fetchMediaStatus();
+  }, [fetchProducts, fetchMediaStatus]);
+
+  // ===================================================
+  // REFRESH MEDIA STATUS WHEN SHOP BECOMES VISIBLE AGAIN
+  // ===================================================
+
+  useEffect(() => {
+    const handleFocus = () => {
+      fetchMediaStatus();
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        fetchMediaStatus();
       }
     };
 
-    fetchProducts();
+    window.addEventListener("focus", handleFocus);
+    document.addEventListener(
+      "visibilitychange",
+      handleVisibilityChange
+    );
 
     return () => {
-      isMounted = false;
+      window.removeEventListener("focus", handleFocus);
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+      );
     };
-  }, []);
+  }, [fetchMediaStatus]);
 
-  // FILTER AND SORT PRODUCTS
+  // ===================================================
+  // MATCH PRODUCT IMAGE TO MEDIA MANAGER ASSET
+  // ===================================================
+
+  const productsWithImageStatus = useMemo(() => {
+    return products.map((product) => {
+      const productImage =
+        product.image ??
+        product.image_url ??
+        product.imageUrl ??
+        product.product_image ??
+        "";
+
+      const productIdentifiers = new Set(
+        getImageIdentifiers(productImage)
+      );
+
+      const matchingAsset = mediaAssets.find((asset) => {
+        const assetIdentifiers = [
+          ...getImageIdentifiers(asset?.image_url),
+          ...getImageIdentifiers(asset?.object_key),
+        ];
+
+        return assetIdentifiers.some((identifier) =>
+          productIdentifiers.has(identifier)
+        );
+      });
+
+      return {
+        ...product,
+
+        // ProductCard already supports this flag.
+        imageHidden:
+          matchingAsset != null &&
+          isInactiveMedia(matchingAsset),
+      };
+    });
+  }, [products, mediaAssets]);
+
+  // ===================================================
+  // FILTER + SORT PRODUCTS
+  // ===================================================
+
   const filteredProducts = useMemo(() => {
-    let result = [...products];
+    let result = [...productsWithImageStatus];
 
     if (selectedCategory !== "all") {
       result = result.filter(
@@ -176,13 +370,15 @@ const Shop = () => {
 
     if (selectedPrice === "250-500") {
       result = result.filter(
-        (product) => product.price >= 250 && product.price <= 500
+        (product) =>
+          product.price >= 250 && product.price <= 500
       );
     }
 
     if (selectedPrice === "500-1000") {
       result = result.filter(
-        (product) => product.price > 500 && product.price <= 1000
+        (product) =>
+          product.price > 500 && product.price <= 1000
       );
     }
 
@@ -192,7 +388,8 @@ const Shop = () => {
 
     if (selectedRating !== "all") {
       result = result.filter(
-        (product) => product.rating >= Number(selectedRating)
+        (product) =>
+          product.rating >= Number(selectedRating)
       );
     }
 
@@ -210,40 +407,50 @@ const Shop = () => {
 
     if (sortBy === "newest") {
       result.sort((a, b) => {
-        const dateA = a.created_at
-          ? new Date(a.created_at).getTime()
-          : 0;
+        const dateA = new Date(a.created_at ?? 0).getTime();
+        const dateB = new Date(b.created_at ?? 0).getTime();
 
-        const dateB = b.created_at
-          ? new Date(b.created_at).getTime()
-          : 0;
+        if (Number.isFinite(dateA) && Number.isFinite(dateB)) {
+          return dateB - dateA;
+        }
 
-        return dateB - dateA;
+        return String(b.id).localeCompare(String(a.id));
       });
     }
 
     return result;
   }, [
-    products,
+    productsWithImageStatus,
     selectedCategory,
     selectedPrice,
     selectedRating,
     sortBy,
   ]);
 
+  // ===================================================
   // PAGINATION
+  // ===================================================
+
   const totalPages = Math.ceil(
     filteredProducts.length / productsPerPage
   );
 
-  const startIndex = (currentPage - 1) * productsPerPage;
+  const safeCurrentPage = Math.max(
+    1,
+    Math.min(currentPage, Math.max(totalPages, 1))
+  );
+
+  const startIndex = (safeCurrentPage - 1) * productsPerPage;
 
   const paginatedProducts = filteredProducts.slice(
     startIndex,
     startIndex + productsPerPage
   );
 
+  // ===================================================
   // FILTER HANDLERS
+  // ===================================================
+
   const handleCategoryChange = (value) => {
     setSelectedCategory(value);
     setCurrentPage(1);
@@ -264,7 +471,6 @@ const Shop = () => {
     setCurrentPage(1);
   };
 
-  // CLEAR FILTERS
   const handleClearFilters = () => {
     setSelectedCategory("all");
     setSelectedPrice("all");
@@ -273,7 +479,10 @@ const Shop = () => {
     setCurrentPage(1);
   };
 
-  // RENDER SHOP PAGE
+  // ===================================================
+  // RENDER
+  // ===================================================
+
   return (
     <main className="shop-page">
       <section className="shop-hero">
@@ -343,13 +552,15 @@ const Shop = () => {
             <div className="shop-products-content">
               <div className="shop-products-topbar">
                 <div className="shop-results">
-                  <span>Showing</span>{" "}
+                  <span>Showing</span>
 
                   <strong>
+                    {" "}
                     {loading ? "..." : filteredProducts.length}
-                  </strong>{" "}
+                  </strong>
 
                   <span>
+                    {" "}
                     {filteredProducts.length === 1
                       ? "product"
                       : "products"}
@@ -365,9 +576,7 @@ const Shop = () => {
               {loading && (
                 <div className="shop-empty">
                   <h3>Loading SpiceCraft products...</h3>
-                  <p>
-                    Please wait while we fetch our products.
-                  </p>
+                  <p>Please wait while we fetch our products.</p>
                 </div>
               )}
 
@@ -378,19 +587,21 @@ const Shop = () => {
 
                   <button
                     type="button"
-                    onClick={() => window.location.reload()}
+                    onClick={() => {
+                      fetchProducts();
+                      fetchMediaStatus();
+                    }}
                   >
                     Try Again
                   </button>
                 </div>
               )}
 
-              {!loading && !error && paginatedProducts.length > 0 && (
-                <ProductGrid
-                  products={paginatedProducts}
-                  onAddToCart={addToCart}
-                />
-              )}
+              {!loading &&
+                !error &&
+                paginatedProducts.length > 0 && (
+                  <ProductGrid products={paginatedProducts} />
+                )}
 
               {!loading &&
                 !error &&
@@ -418,11 +629,17 @@ const Shop = () => {
               {!loading && !error && totalPages > 1 && (
                 <div className="shop-pagination">
                   <Pagination
-                    currentPage={currentPage}
+                    currentPage={safeCurrentPage}
                     totalPages={totalPages}
                     onPageChange={setCurrentPage}
                   />
                 </div>
+              )}
+
+              {mediaError && (
+                <p className="mt-3 text-sm text-amber-700">
+                  {mediaError}
+                </p>
               )}
             </div>
           </div>

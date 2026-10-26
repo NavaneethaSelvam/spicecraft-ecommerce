@@ -1,29 +1,64 @@
-/* =========================
-   GLOBAL RESET
-========================= */
 
-* {
-  margin: 0;
-  padding: 0;
+@import "tailwindcss";
+
+/* ========================================
+   SPICECRAFT — GLOBAL DESIGN SYSTEM
+   Tailwind CSS v4
+======================================== */
+
+:root {
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1c1917;
+  background: #fffaf2;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-primary: #784323;
+  --color-primary-dark: #482718;
+  --color-accent: #8c3b1e;
+  --color-cream: #fffaf2;
+  --color-surface: #ffffff;
+  --color-text: #1c1917;
+  --color-muted: #44403c;
+  --color-border: #eadbca;
+
+  --shadow-soft: 0 5px 18px rgba(58, 35, 21, 0.06);
+  --shadow-card: 0 10px 28px rgba(58, 35, 21, 0.1);
+
+  --radius-card: 10px;
+  --radius-button: 999px;
+}
+
+/* Reset */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
+  min-width: 320px;
   scroll-behavior: smooth;
+  scrollbar-color: #a96532 #fff3e3;
+  scrollbar-width: thin;
 }
 
 body {
-  margin: 0;
   min-width: 320px;
-  background: #fffdf9;
-  color: #24150e;
-  font-family:
-    Inter,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
-  line-height: 1.5;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-cream);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 button,
@@ -37,9 +72,22 @@ button {
   cursor: pointer;
 }
 
-img {
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
   max-width: 100%;
+}
+
+img {
   display: block;
+  height: auto;
 }
 
 a {
@@ -52,209 +100,307 @@ ol {
   list-style: none;
 }
 
-/* =========================
-   COMMON CONTAINER
-========================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  color: var(--color-text);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
+::selection {
+  background: #ead0ad;
+  color: #3c2013;
+}
+
+/* Accessible focus */
+
+:focus-visible {
+  outline: 2px solid #b7793d;
+  outline-offset: 3px;
+}
+
+/* ========================================
+   SHARED LAYOUT COMPATIBILITY
+   Retained for existing pages
+======================================== */
 
 .container {
-  width: min(1200px, 92%);
-  margin: 0 auto;
+  width: min(1320px, 92%);
+  margin-inline: auto;
 }
-
-/* =========================
-   COMMON PAGE
-========================= */
 
 .page {
-  min-height: 100vh;
-  padding: 60px 0;
+  min-height: 65vh;
+  padding: 42px 0 64px;
 }
 
-/* =========================
-   COMMON SECTION
-========================= */
-
 .section {
-  padding: 80px 0;
+  padding: 28px 0;
 }
 
 .section-heading {
-  text-align: center;
-  margin-bottom: 45px;
+  margin-bottom: 26px;
+  text-align: left;
 }
 
 .eyebrow {
   display: inline-block;
-  margin-bottom: 10px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
+  margin-bottom: 8px;
+  color: var(--color-accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: #9b5b25;
 }
 
 .section-heading h2 {
-  margin: 0;
-  font-size: clamp(30px, 4vw, 46px);
-  line-height: 1.15;
-  color: #24150e;
+  margin-bottom: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(25px, 3vw, 34px);
+  letter-spacing: -0.4px;
+  line-height: 1.2;
 }
 
 .section-heading p {
   max-width: 650px;
-  margin: 14px auto 0;
-  color: #75675f;
-  font-size: 16px;
+  margin: 10px 0 0;
+  color: var(--color-muted);
+  font-size: 14px;
 }
 
-/* =========================
-   COMMON BUTTONS
-========================= */
+/* Buttons */
 
 .btn {
   display: inline-flex;
+  min-height: 42px;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 13px 22px;
-  border: none;
-  border-radius: 4px;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  padding: 10px 22px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .btn-primary {
-  background: #7b351f;
-  color: #ffffff;
+  background: var(--color-primary);
+  color: #fff;
 }
 
 .btn-primary:hover {
-  background: #572415;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  background: var(--color-primary-dark);
+  box-shadow: 0 5px 14px rgba(77, 37, 24, 0.17);
 }
 
 .btn-secondary {
-  background: #f3e5d2;
-  color: #5c2d1c;
+  border-color: #e8d5c0;
+  background: #f7ead9;
+  color: #2b1408;
 }
 
 .btn-secondary:hover {
-  background: #e8d1b3;
-  transform: translateY(-2px);
+  background: #efddc6;
 }
 
-/* =========================
-   COMMON FORM ELEMENTS
-========================= */
+/* ========================================
+   FORMS
+   Avoid global width: 100% because it can
+   break header search and inline controls.
+======================================== */
 
 input,
 select,
 textarea {
+  max-width: 100%;
+  color: var(--color-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #78716c;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Form fields inside page content */
+
+.page input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+.page select,
+.page textarea {
   width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #ddd1c5;
-  border-radius: 5px;
+  min-width: 0;
+  padding: 11px 13px;
+  border: 1px solid #dfd2c5;
+  border-radius: 7px;
+  background: #fff;
   outline: none;
-  background: #ffffff;
-  color: #24150e;
-  transition: border-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: #9b5b25;
+.page input:focus,
+.page select:focus,
+.page textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(183, 121, 61, 0.12);
 }
 
-/* =========================
-   COMMON CARD
-========================= */
+/* Cards */
 
 .card {
-  background: #ffffff;
-  border: 1px solid #eee5dc;
-  border-radius: 10px;
+  min-width: 0;
   overflow: hidden;
+  border: 1px solid #eee5dc;
+  border-radius: var(--radius-card);
+  background: #fffdf9;
+  box-shadow: 0 2px 8px rgba(58, 35, 21, 0.025);
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(55, 32, 18, 0.1);
+  border-color: #e4d0bc;
+  box-shadow: var(--shadow-card);
 }
 
-/* =========================
-   COMMON GRID
-========================= */
+/* Existing grid utilities */
 
 .grid {
   display: grid;
-  gap: 24px;
+  gap: 20px;
 }
 
 .grid-2 {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .grid-3 {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-4 {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-/* =========================
-   COMMON EMPTY STATE
-========================= */
+/* Empty states */
 
 .empty-products,
 .empty-cart {
-  padding: 60px 20px;
+  padding: 48px 20px;
+  color: var(--color-muted);
   text-align: center;
-  color: #75675f;
 }
 
-/* =========================
-   COMMON RESPONSIVE
-========================= */
+/* Image links */
 
-@media (max-width: 992px) {
-  .grid-4 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .grid-3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .section {
-    padding: 65px 0;
-  }
+a img {
+  transition: opacity 0.2s ease;
 }
 
-@media (max-width: 600px) {
+a:hover img {
+  opacity: 0.97;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (min-width: 1440px) {
   .container {
-    width: 90%;
+    width: min(1320px, 92%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 94%;
+  }
+
+  .grid-4,
+  .grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .page {
-    padding: 40px 0;
+    padding-top: 34px;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    width: 92%;
+  }
+
+  .page {
+    padding: 28px 0 42px;
   }
 
   .section {
-    padding: 50px 0;
+    padding: 22px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 20px;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(24px, 7vw, 31px);
+  }
+
+  .section-heading p {
+    font-size: 13px;
   }
 
   .grid-2,
   .grid-3,
   .grid-4 {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
   }
 
-  .section-heading {
-    margin-bottom: 30px;
+  .btn {
+    min-height: 40px;
+    padding: 10px 17px;
+  }
+}
+
+/* Respect reduced-motion preference */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -11,7 +11,7 @@
 }
 
 .checkout-eyebrow {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -19,12 +19,12 @@
 
 .checkout-heading h1 {
   margin: 10px 0;
-  color: #3b2118;
+  color: #1c1917;
   font-size: 42px;
 }
 
 .checkout-heading p {
-  color: #765f55;
+  color: #44403c;
 }
 
 .checkout-layout {
@@ -63,13 +63,13 @@
   place-items: center;
   border-radius: 50%;
   background: #f4ebe3;
-  color: #a33b20;
+  color: #8c3b1e;
   font-weight: 700;
 }
 
 .checkout-section-title h2 {
   margin: 0 0 4px;
-  color: #3b2118;
+  color: #1c1917;
   font-size: 21px;
 }
 
@@ -96,7 +96,7 @@
 }
 
 .form-group label {
-  color: #3b2118;
+  color: #1c1917;
   font-size: 14px;
   font-weight: 600;
 }
@@ -116,7 +116,7 @@
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #a33b20;
+  border-color: #8c3b1e;
 }
 
 .form-group textarea {
@@ -140,12 +140,12 @@
 }
 
 .payment-option.selected {
-  border-color: #a33b20;
+  border-color: #8c3b1e;
   background: #fff8f3;
 }
 
 .payment-option input {
-  accent-color: #a33b20;
+  accent-color: #8c3b1e;
 }
 
 .payment-option div {
@@ -155,7 +155,7 @@
 }
 
 .payment-option strong {
-  color: #3b2118;
+  color: #1c1917;
 }
 
 .payment-option span {
@@ -170,7 +170,7 @@
 
 .checkout-summary h2 {
   margin-top: 0;
-  color: #3b2118;
+  color: #1c1917;
 }
 
 .checkout-product {
@@ -187,7 +187,7 @@
 }
 
 .checkout-product strong {
-  color: #3b2118;
+  color: #1c1917;
 }
 
 .checkout-product span {
@@ -209,14 +209,14 @@
 }
 
 .checkout-summary-row {
-  color: #765f55;
+  color: #44403c;
 }
 
 .checkout-total {
   margin-top: 10px;
   padding-top: 20px;
   border-top: 1px solid #eaded4;
-  color: #3b2118;
+  color: #1c1917;
   font-size: 20px;
 }
 
@@ -241,7 +241,7 @@
   display: block;
   margin: 18px 0;
   text-align: center;
-  color: #a33b20;
+  color: #8c3b1e;
   text-decoration: none;
   font-weight: 600;
 }

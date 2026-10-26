@@ -1,6 +1,6 @@
 .about-page {
   background: #fffaf5;
-  color: #3b2118;
+  color: #1c1917;
 }
 
 /* =========================
@@ -32,7 +32,7 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 2.5px;
-  color: #a33b20;
+  color: #8c3b1e;
 }
 
 .about-hero .eyebrow {
@@ -94,14 +94,14 @@
 }
 
 .about-story-content h2 span {
-  color: #a33b20;
+  color: #8c3b1e;
 }
 
 .about-story-content p {
   margin: 0 0 18px;
   font-size: 16px;
   line-height: 1.8;
-  color: #6d554b;
+  color: #44403c;
 }
 
 .about-shop-btn,
@@ -146,12 +146,12 @@
 }
 
 .about-section-heading h2 span {
-  color: #a33b20;
+  color: #8c3b1e;
 }
 
 .about-section-heading p {
   margin: 0;
-  color: #6d554b;
+  color: #44403c;
   line-height: 1.8;
 }
 
@@ -181,7 +181,7 @@
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 2px;
-  color: #a33b20;
+  color: #8c3b1e;
 }
 
 .about-card h3 {
@@ -191,7 +191,7 @@
 
 .about-card p {
   margin: 0;
-  color: #6d554b;
+  color: #44403c;
   line-height: 1.75;
 }
 
@@ -213,7 +213,7 @@
 }
 
 .mission-section h2 span {
-  color: #a33b20;
+  color: #8c3b1e;
 }
 
 .mission-section p {
@@ -221,7 +221,7 @@
   margin: 0 auto;
   font-size: 17px;
   line-height: 1.8;
-  color: #6d554b;
+  color: #44403c;
 }
 
 /* =========================
@@ -262,7 +262,7 @@
 .about-cta-btn {
   margin-top: 30px;
   background: #f2c078;
-  color: #3b2118;
+  color: #1c1917;
 }
 
 .about-cta-btn:hover {

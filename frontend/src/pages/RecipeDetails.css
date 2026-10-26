@@ -14,7 +14,7 @@
 }
 
 .recipe-details-breadcrumb a {
-  color: #a33b20;
+  color: #8c3b1e;
   text-decoration: none;
 }
 
@@ -43,7 +43,7 @@
 
 .recipe-details-category,
 .recipe-section-eyebrow {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -52,13 +52,13 @@
 
 .recipe-details-info h1 {
   margin: 12px 0 18px;
-  color: #3b2118;
+  color: #1c1917;
   font-size: 48px;
   line-height: 1.1;
 }
 
 .recipe-details-description {
-  color: #765f55;
+  color: #44403c;
   line-height: 1.8;
   font-size: 16px;
 }
@@ -84,7 +84,7 @@
 }
 
 .recipe-details-meta strong {
-  color: #3b2118;
+  color: #1c1917;
   font-size: 14px;
 }
 
@@ -100,7 +100,7 @@
 .ingredients-section h2,
 .steps-section h2 {
   margin: 8px 0 25px;
-  color: #3b2118;
+  color: #1c1917;
   font-size: 30px;
 }
 
@@ -129,7 +129,7 @@
 }
 
 .recipe-step span {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 13px;
   font-weight: 700;
 }
@@ -149,12 +149,12 @@
 
 .recipe-bottom h2 {
   margin: 0 0 8px;
-  color: #3b2118;
+  color: #1c1917;
   font-size: 30px;
 }
 
 .recipe-bottom p {
-  color: #765f55;
+  color: #44403c;
 }
 
 .recipe-bottom a {
@@ -177,21 +177,21 @@
 }
 
 .recipe-not-found span {
-  color: #a33b20;
+  color: #8c3b1e;
   font-weight: 700;
   letter-spacing: 2px;
 }
 
 .recipe-not-found h1 {
-  color: #3b2118;
+  color: #1c1917;
 }
 
 .recipe-not-found p {
-  color: #765f55;
+  color: #44403c;
 }
 
 .recipe-not-found a {
-  color: #a33b20;
+  color: #8c3b1e;
   font-weight: 600;
 }
 

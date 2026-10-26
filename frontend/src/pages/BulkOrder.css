@@ -1,6 +1,6 @@
 .bulk-page {
   background: #fffaf5;
-  color: #3b2118;
+  color: #1c1917;
 }
 
 /* HERO */
@@ -70,12 +70,12 @@
 .bulk-intro h2 span,
 .bulk-form-heading h2 span,
 .bulk-bottom h2 span {
-  color: #a33b20;
+  color: #8c3b1e;
 }
 
 .bulk-intro-content > p {
   max-width: 700px;
-  color: #6d554b;
+  color: #44403c;
   line-height: 1.8;
   font-size: 17px;
 }
@@ -96,7 +96,7 @@
 }
 
 .bulk-benefits strong {
-  color: #a33b20;
+  color: #8c3b1e;
   font-size: 14px;
   letter-spacing: 2px;
 }
@@ -108,7 +108,7 @@
 
 .bulk-benefits p {
   margin: 0;
-  color: #6d554b;
+  color: #44403c;
   line-height: 1.7;
 }
 
@@ -130,7 +130,7 @@
 
 .bulk-form-heading p {
   max-width: 650px;
-  color: #6d554b;
+  color: #44403c;
   line-height: 1.8;
 }
 
@@ -165,7 +165,7 @@
   padding: 14px 15px;
   border: 1px solid #d8c8bd;
   background: #fff;
-  color: #3b2118;
+  color: #1c1917;
   font-family: inherit;
   font-size: 15px;
   outline: none;
@@ -179,7 +179,7 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #a33b20;
+  border-color: #8c3b1e;
 }
 
 .bulk-submit-btn {
@@ -219,7 +219,7 @@
 .bulk-bottom p {
   max-width: 600px;
   margin: 0 auto;
-  color: #6d554b;
+  color: #44403c;
   line-height: 1.8;
 }
 

@@ -1,39 +1,54 @@
-import React, { useState } from "react";
+
+import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
-import "./WishlistButton.css";
+import useWishlistStore from "../store/wishlistStore";
 
-const WishlistButton = ({ productId, onWishlistChange }) => {
-  const [isWishlisted, setIsWishlisted] = useState(false);
+export default function WishlistButton({ product }) {
+  const wishlist = useWishlistStore((state) => state.wishlist);
+  const toggleWishlist = useWishlistStore(
+    (state) => state.toggleWishlist
+  );
 
-  const handleWishlist = () => {
-    const newValue = !isWishlisted;
+  const productId = String(product?.id ?? product?.product_id);
 
-    setIsWishlisted(newValue);
+  const isWishlisted = wishlist.some(
+    (item) =>
+      String(
+        typeof item === "object" && item !== null
+          ? item.id ?? item.product_id
+          : item
+      ) === productId
+  );
 
-    if (onWishlistChange) {
-      onWishlistChange(productId, newValue);
+  const handleWishlist = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (product) {
+      toggleWishlist(product);
     }
   };
 
   return (
-    <button
+    <motion.button
       type="button"
-      className={`wishlist-button ${
-        isWishlisted ? "active" : ""
-      }`}
       onClick={handleWishlist}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
       aria-label={
-        isWishlisted
-          ? "Remove from wishlist"
-          : "Add to wishlist"
+        isWishlisted ? "Remove from wishlist" : "Add to wishlist"
       }
+      title={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+      className={`flex h-10 w-10 items-center justify-center rounded-full border bg-white shadow-sm ${
+        isWishlisted
+          ? "border-rose-200 text-rose-600"
+          : "border-[#eadfd5] text-[#6b3d24] hover:text-rose-600"
+      }`}
     >
       <Heart
         size={20}
         fill={isWishlisted ? "currentColor" : "none"}
       />
-    </button>
+    </motion.button>
   );
-};
-
-export default WishlistButton;
+}
